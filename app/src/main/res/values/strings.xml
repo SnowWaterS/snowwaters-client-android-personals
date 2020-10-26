@@ -2,4 +2,14 @@
     <string name="app_name">HabitForYou</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+    <string name="main_navigation_home" translatable="false">Home</string>
+    <string name="main_navigation_printer" translatable="false">Printer</string>
+    <string name="main_navigation_Habit_tracker" translatable="false">Habit Tracker</string>
+    <string name="main_navigation_photos" translatable="false">Photos</string>
+    <string name="main_navigation_videos" translatable="false">Videos</string>
+
+    <string name="nav_header_title" translatable="false">Habbit For You</string>
+    <string name="nav_header_desc" translatable="false">Navigation Header</string>
+
 </resources>
