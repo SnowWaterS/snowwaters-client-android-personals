@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.main
+package com.har.habitforyou.ui.sections
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
