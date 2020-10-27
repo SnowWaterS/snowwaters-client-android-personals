@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.main
+package com.har.habitforyou.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,24 +8,24 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.har.habitforyou.R
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = HomeFragment()
     }
 
-    private lateinit var fragmentViewModel: MainFragmentViewModel
+    private lateinit var fragmentViewModel: HomeFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        fragmentViewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
+        fragmentViewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

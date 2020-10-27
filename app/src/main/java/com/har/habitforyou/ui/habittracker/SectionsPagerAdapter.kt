@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.sections
+package com.har.habitforyou.ui.habittracker
 
 import android.content.Context
 import androidx.fragment.app.Fragment

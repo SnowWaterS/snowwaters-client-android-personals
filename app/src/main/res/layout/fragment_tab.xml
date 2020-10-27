@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.har.habitforyou.ui.sections.PageViewModel" />
+            type="com.har.habitforyou.ui.habittracker.PageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.sections.PlaceholderFragment">
+        tools:context=".ui.habittracker.PlaceholderFragment">
 
         <TextView
             android:id="@+id/section_label"
