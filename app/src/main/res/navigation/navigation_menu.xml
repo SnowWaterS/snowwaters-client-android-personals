@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_menu.xml"
+    app:startDestination="@+id/nav_home">
+
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.har.habitforyou.ui.home.HomeFragment"
+        android:label="@string/main_navigation_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_printer"
+        android:name="com.har.habitforyou.ui.printer.PrinterFragment"
+        android:label="@string/main_navigation_printer"
+        tools:layout="@layout/fragment_printer" />
+
+    <fragment
+        android:id="@+id/nav_habbit_tracker"
+        android:name="com.har.habitforyou.ui.home.HomeFragment"
+        android:label="@string/main_navigation_Habit_tracker"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_photos"
+        android:name="com.har.habitforyou.ui.home.HomeFragment"
+        android:label="@string/main_navigation_photos"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_videos"
+        android:name="com.har.habitforyou.ui.home.HomeFragment"
+        android:label="@string/main_navigation_videos"
+        tools:layout="@layout/fragment_home" />
+
+</navigation>

@@ -1,10 +1,9 @@
-package com.har.habitforyou.ui.main
+package com.har.habitforyou.ui.habittracker
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 
 class PageViewModel : ViewModel() {
 
