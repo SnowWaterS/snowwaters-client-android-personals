@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.printer
+package com.har.habitforyou.ui.printer.tab.settings
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
