@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Printer -->
+    <!-- Bluetooth Device -->
+    <string name="pref_key_printer_connect_bluetooth_device_title" translatable="false">pref_key_printer_connect_bluetooth_device_title</string>
+    <string name="pref_key_printer_store_pin_code_title" translatable="false">pref_key_printer_store_pin_code_title</string>
+
+    <!-- Basic Format Setting -->
+    <string name="pref_key_printer_font_size_title">pref_key_printer_font_size_title</string>
+    <string name="pref_key_printer_text_align_title">pref_key_printer_text_align_title</string>
+
+    <!-- Copyright -->
+    <string name="pref_key_printer_copyright">pref_key_printer_copyright</string>
+
+</resources>
