@@ -20,7 +20,7 @@
         app:title="@string/printer_format_setting_header">
 
         <ListPreference
-            app:defaultValue="reply"
+            app:defaultValue="medium"
             app:entries="@array/font_size_entries"
             app:entryValues="@array/font_size_values"
             app:icon="@drawable/ic_font_size"
@@ -29,7 +29,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="reply"
+            app:defaultValue="left"
             app:entries="@array/text_align_entries"
             app:entryValues="@array/text_align_values"
             app:icon="@drawable/ic_text_align"
