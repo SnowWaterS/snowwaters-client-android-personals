@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Main -->
+    <!-- Theme -->
+    <string name="pref_key_main_setting_color_title" translatable="false">pref_key_main_setting_color_title</string>
+    <string name="pref_key_main_setting_font_title" translatable="false">pref_key_main_setting_font_title</string>
+
+
     <!-- Printer -->
     <!-- Bluetooth Device -->
     <string name="pref_key_printer_connect_bluetooth_device_title" translatable="false">pref_key_printer_connect_bluetooth_device_title</string>

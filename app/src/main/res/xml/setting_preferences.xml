@@ -1,0 +1,24 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:iconSpaceReserved="false">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/main_setting_title_theme">
+
+        <EditTextPreference
+            app:icon="@drawable/ic_color"
+            app:key="@string/pref_key_main_setting_color_title"
+            app:title="@string/main_setting_color_title" />
+
+        <ListPreference
+            app:defaultValue="medium"
+            app:entries="@array/font_size_entries"
+            app:entryValues="@array/font_size_values"
+            app:icon="@drawable/ic_font_size"
+            app:key="@string/pref_key_main_setting_font_title"
+            app:title="@string/main_setting_font_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

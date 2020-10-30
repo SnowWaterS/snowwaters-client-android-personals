@@ -8,9 +8,17 @@
     <string name="main_navigation_Habit_tracker" translatable="false">Habit Tracker</string>
     <string name="main_navigation_photos" translatable="false">Photos</string>
     <string name="main_navigation_videos" translatable="false">Videos</string>
+    <string name="main_navigation_settings" translatable="false">Settings</string>
+
+    <string name="main_menu_settings" translatable="false">Settings</string>
 
     <string name="nav_header_title" translatable="false">Habbit For You</string>
     <string name="nav_header_desc" translatable="false">Navigation Header</string>
+
+    <!-- Settings -->
+    <string name="main_setting_title_theme">화면 테마</string>
+    <string name="main_setting_color_title">메인 컬러</string>
+    <string name="main_setting_font_title">폰트</string>
 
 
     <!-- Printer -->
@@ -20,6 +28,7 @@
     <string name="printer_title_extension" translatable="false">Extension</string>
     <string name="printer_title_settings" translatable="false">Settings</string>
 
+    <!-- Printer Settings -->
     <!-- Preference Categories -->
     <string name="printer_bluetooth_device_header" translatable="false">Bluetooth Device</string>
     <string name="printer_format_setting_header" translatable="false">Basic Format Setting</string>
@@ -29,7 +38,6 @@
     <string name="printer_store_pin_code_title" translatable="false">프린터 핀코드 입력</string>
 
     <!-- Basic Format Setting -->
-    <string name="printer_font_title">폰트</string>
     <string name="printer_font_size_title">폰트 사이즈</string>
     <string name="printer_text_align_title">정렬 방식</string>
 

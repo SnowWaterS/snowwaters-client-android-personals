@@ -36,4 +36,9 @@
         android:label="@string/main_navigation_videos"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.har.habitforyou.ui.settings.SettingsFragment"
+        android:label="@string/main_navigation_settings" />
+
 </navigation>
