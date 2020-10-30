@@ -1,13 +1,17 @@
 <resources>
     <!-- Font Preference -->
     <string-array name="font_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
+        <item>나눔손글씨 연지체</item>
+        <item>잉크립퀴드체</item>
+        <item>즐거운이야기체</item>
+        <item>쿠키런체</item>
     </string-array>
 
     <string-array name="font_values">
-        <item>reply</item>
-        <item>reply_all</item>
+        <item>yeonji</item>
+        <item>inklipquid</item>
+        <item>funnystory</item>
+        <item>cookierun</item>
     </string-array>
 
     <!-- Font size Preference -->

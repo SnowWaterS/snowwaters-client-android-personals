@@ -11,9 +11,9 @@
             app:title="@string/main_setting_color_title" />
 
         <ListPreference
-            app:defaultValue="medium"
-            app:entries="@array/font_size_entries"
-            app:entryValues="@array/font_size_values"
+            app:defaultValue="inklipquid"
+            app:entries="@array/font_entries"
+            app:entryValues="@array/font_values"
             app:icon="@drawable/ic_font_size"
             app:key="@string/pref_key_main_setting_font_title"
             app:title="@string/main_setting_font_title"
