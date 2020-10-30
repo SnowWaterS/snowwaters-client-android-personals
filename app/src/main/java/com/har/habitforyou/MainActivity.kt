@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -41,11 +42,27 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
 
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+
         navView.setupWithNavController(navController)
 
-        findViewById<Toolbar>(R.id.toolbar)
-            .setupWithNavController(navController, appBarConfiguration)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.setupWithNavController(navController, appBarConfiguration)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.title == getString(R.string.main_menu_settings)) {
+            Toast.makeText(this, "메뉴가 눌렸어요!", Toast.LENGTH_LONG).show()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
@@ -58,7 +75,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
