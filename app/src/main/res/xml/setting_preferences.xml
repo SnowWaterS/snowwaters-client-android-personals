@@ -1,22 +1,23 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:iconSpaceReserved="false">
 
     <PreferenceCategory
-        app:iconSpaceReserved="false"
-        app:title="@string/main_setting_title_theme">
+        android:title="@string/main_setting_title_theme"
+        app:iconSpaceReserved="false">
 
         <EditTextPreference
-            app:icon="@drawable/ic_color"
-            app:key="@string/pref_key_main_setting_color_title"
-            app:title="@string/main_setting_color_title" />
+            android:icon="@drawable/ic_color"
+            android:key="@string/pref_key_main_setting_color_title"
+            android:title="@string/main_setting_color_title" />
 
         <ListPreference
-            app:defaultValue="inklipquid"
-            app:entries="@array/font_entries"
-            app:entryValues="@array/font_values"
-            app:icon="@drawable/ic_font_size"
-            app:key="@string/pref_key_main_setting_font_title"
-            app:title="@string/main_setting_font_title"
+            android:defaultValue="inklipquid"
+            android:entries="@array/font_entries"
+            android:entryValues="@array/font_values"
+            android:icon="@drawable/ic_font_size"
+            android:key="@string/pref_key_main_setting_font_title"
+            android:title="@string/main_setting_font_title"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

@@ -1,48 +1,50 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="@string/printer_bluetooth_device_header">
+        android:title="@string/printer_bluetooth_device_header">
 
         <SwitchPreference
-            app:icon="@drawable/ic_bluetooth_searching"
-            app:key="@string/pref_key_printer_connect_bluetooth_device_title"
-            app:title="@string/printer_connect_bluetooth_device_title" />
+            android:icon="@drawable/ic_bluetooth_searching"
+            android:key="@string/pref_key_printer_connect_bluetooth_device_title"
+            android:title="@string/printer_connect_bluetooth_device_title" />
 
         <EditTextPreference
-            app:icon="@drawable/ic_bluetooth_connected"
-            app:key="@string/pref_key_printer_store_pin_code_title"
-            app:title="@string/printer_store_pin_code_title" />
+            android:icon="@drawable/ic_bluetooth_connected"
+            android:inputType="textPassword"
+            android:key="@string/pref_key_printer_store_pin_code_title"
+            android:title="@string/printer_store_pin_code_title" />
     </PreferenceCategory>
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="@string/printer_format_setting_header">
+        android:title="@string/printer_format_setting_header">
 
         <ListPreference
-            app:defaultValue="medium"
-            app:entries="@array/font_size_entries"
-            app:entryValues="@array/font_size_values"
-            app:icon="@drawable/ic_font_size"
-            app:key="@string/pref_key_printer_font_size_title"
-            app:title="@string/printer_font_size_title"
+            android:defaultValue="medium"
+            android:entries="@array/font_size_entries"
+            android:entryValues="@array/font_size_values"
+            android:icon="@drawable/ic_font_size"
+            android:key="@string/pref_key_printer_font_size_title"
+            android:title="@string/printer_font_size_title"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="left"
-            app:entries="@array/text_align_entries"
-            app:entryValues="@array/text_align_values"
-            app:icon="@drawable/ic_text_align"
-            app:key="@string/pref_key_printer_text_align_title"
-            app:title="@string/printer_text_align_title"
+            android:defaultValue="left"
+            android:entries="@array/text_align_entries"
+            android:entryValues="@array/text_align_values"
+            android:icon="@drawable/ic_text_align"
+            android:key="@string/pref_key_printer_text_align_title"
+            android:title="@string/printer_text_align_title"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
     <Preference
-        app:icon="@drawable/ic_copyright"
-        app:key="@string/pref_key_printer_copyright"
-        app:summary="@string/printer_copyright_summary"
-        app:title="@string/printer_copyright" />
+        android:icon="@drawable/ic_copyright"
+        android:key="@string/pref_key_printer_copyright"
+        android:summary="@string/printer_copyright_summary"
+        android:title="@string/printer_copyright" />
 
 </PreferenceScreen>
