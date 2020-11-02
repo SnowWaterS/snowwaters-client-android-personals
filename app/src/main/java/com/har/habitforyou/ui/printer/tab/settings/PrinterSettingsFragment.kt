@@ -22,12 +22,12 @@ class PrinterSettingsFragment : PreferenceFragmentCompat(),
         if (pref?.key == getString(R.string.pref_key_printer_connect_bluetooth_device_title)) {
             if ((pref as SwitchPreference).isChecked) {
                 Log.i("PrinterSettingsFragment", "블루투스 연결")
-                val scannedDevices = BluetoothUtil.instance?.getScannedBluetoothDevices()
-                if (!scannedDevices.isNullOrEmpty()) {
-                    scannedDevices.forEach {
-                        Log.i("PrinterSettingsFragment", "기기 목록: $it")
-                    }
-                }
+                BluetoothUtil.instance?.scannedBluetoothDevices()
+//                if (!scannedDevices.isNullOrEmpty()) {
+//                    scannedDevices.forEach {
+//                        Log.i("PrinterSettingsFragment", "기기 목록: $it")
+//                    }
+//                }
             } else {
                 Log.i("PrinterSettingsFragment", "블루투스 연결 안 함")
             }
