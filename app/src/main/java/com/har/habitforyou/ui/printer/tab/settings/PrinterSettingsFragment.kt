@@ -7,6 +7,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.har.habitforyou.R
+import com.har.habitforyou.ui.settings.BluetoothConnectionDialog
 import com.har.habitforyou.util.BluetoothUtil
 
 class PrinterSettingsFragment : PreferenceFragmentCompat(),
@@ -22,7 +23,9 @@ class PrinterSettingsFragment : PreferenceFragmentCompat(),
         if (pref?.key == getString(R.string.pref_key_printer_connect_bluetooth_device_title)) {
             if ((pref as SwitchPreference).isChecked) {
                 Log.i("PrinterSettingsFragment", "블루투스 연결")
-                BluetoothUtil.instance?.scannedBluetoothDevices()
+                val fm = parentFragmentManager
+                BluetoothConnectionDialog.instance().show(fm, "bluetoothConnectionDialog")
+//                BluetoothUtil.instance?.scannedBluetoothDevices()
 //                if (!scannedDevices.isNullOrEmpty()) {
 //                    scannedDevices.forEach {
 //                        Log.i("PrinterSettingsFragment", "기기 목록: $it")
