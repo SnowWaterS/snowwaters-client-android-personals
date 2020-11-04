@@ -15,6 +15,8 @@
     <string name="nav_header_title" translatable="false">Habbit For You</string>
     <string name="nav_header_desc" translatable="false">Navigation Header</string>
 
+    <string name="base_binding_dialog_close_text" translatable="false">Close</string>
+
     <!-- Settings -->
     <string name="main_setting_title_theme">화면 테마</string>
     <string name="main_setting_color_title">메인 컬러</string>
