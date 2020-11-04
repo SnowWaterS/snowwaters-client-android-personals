@@ -22,9 +22,9 @@
         <FrameLayout
             android:id="@+id/lay_base_content"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:padding="@dimen/base_binding_content_padding"
-            app:layout_constraintBottom_toTopOf="@id/tv_bottom"
+            app:layout_constraintBottom_toTopOf="@id/tv_confirm_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +33,7 @@
             android:id="@+id/tv_base_error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:visibility="gone"
             app:SpinKit_Color="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,16 +62,41 @@
             android:contentDescription="@string/base_binding_dialog_close_text"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
+            android:tint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_bottom"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_dismiss_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/base_binding_content_padding"
+            android:layout_marginEnd="@dimen/base_binding_content_padding"
+            android:layout_marginBottom="@dimen/base_binding_content_padding"
             android:gravity="center"
             android:padding="@dimen/base_binding_button_padding"
+            android:text="취소"
+            android:textColor="@color/ic_launcher_background"
             android:textSize="@dimen/base_binding_button_text_size"
+            app:layout_constraintEnd_toStartOf="@id/tv_confirm_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="취소" />
+
+
+        <TextView
+            android:id="@+id/tv_confirm_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/base_binding_content_padding"
+            android:layout_marginBottom="@dimen/base_binding_content_padding"
+            android:gravity="center"
+            android:padding="@dimen/base_binding_button_padding"
+            android:text="확인"
+            android:textColor="@color/ic_launcher_background"
+            android:textSize="@dimen/base_binding_button_text_size"
+            app:layout_constraintStart_toEndOf="@id/tv_dismiss_button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="확인" />
 
