@@ -24,8 +24,8 @@ class PrinterImageFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_printer_image, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(PrinterImageViewModel::class.java)
         // TODO: Use the ViewModel
     }
