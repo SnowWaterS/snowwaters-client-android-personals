@@ -9,6 +9,7 @@ import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.har.habitforyou.R
 import com.har.habitforyou.databinding.DialogBaseBindingBinding
@@ -56,6 +57,11 @@ abstract class BaseBindingDialog<VB : ViewDataBinding, VM : BaseBindingDialogVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(getViewModelClass())
+        viewModel.getDismissEvent().observe(this, Observer { isDismiss ->
+            if (isDismiss) {
+                dismissAllowingStateLoss()
+            }
+        })
         baseBinding.viewModel = viewModel
         initBinding(viewModel, binding)
     }
