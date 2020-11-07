@@ -125,10 +125,11 @@ class BluetoothUtil {
         curDevice.setPin( pairingPin.toByteArray() )
         curDevice.createBond()
 
-        // 페어링 끊기
-        val removeBondMethod = curDevice.javaClass.getMethod("removeBond", null)
-        removeBondMethod.invoke(curDevice, null)
-
+//        // 페어링 끊기
+//        val removeBondMethod = curDevice.javaClass.getMethod("removeBond", null)
+//        removeBondMethod.invoke(curDevice, null)
+//
+//        curDevice.removeBond()
 
 
         // 연결을 위한 소켓 오픈
