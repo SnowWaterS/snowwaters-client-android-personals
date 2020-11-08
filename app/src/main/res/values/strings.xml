@@ -17,11 +17,13 @@
 
     <string name="base_binding_dialog_close_text" translatable="false">Close</string>
 
+    <string name="home_title" translatable="false">Habit For You</string>
+    <string name="home_description" translatable="false">Do you want a new habit?\nThis app will help you!\nTry it for your furture!!</string>
+
     <!-- Settings -->
     <string name="main_setting_title_theme">화면 테마</string>
     <string name="main_setting_color_title">메인 컬러</string>
     <string name="main_setting_font_title">폰트</string>
-
 
     <!-- Printer -->
     <!-- Tab -->

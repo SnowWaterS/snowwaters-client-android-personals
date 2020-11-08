@@ -28,13 +28,13 @@
         android:id="@+id/nav_photos"
         android:name="com.har.habitforyou.ui.photos.PhotosFragment"
         android:label="@string/main_navigation_photos"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_photos" />
 
     <fragment
         android:id="@+id/nav_videos"
         android:name="com.har.habitforyou.ui.videos.VideosFragment"
         android:label="@string/main_navigation_videos"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_videos" />
 
     <fragment
         android:id="@+id/nav_settings"

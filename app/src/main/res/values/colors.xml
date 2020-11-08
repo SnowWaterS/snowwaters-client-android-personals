@@ -3,8 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryDarkAccent">#5F7BD5</color>
 
     <color name="color_tab_selected">#FFFFFF</color>
     <color name="color_tab_deselected">#A670F4</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="color_background_splash">#A670F4</color>
 </resources>
