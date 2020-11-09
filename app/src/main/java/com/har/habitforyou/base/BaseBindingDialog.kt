@@ -47,7 +47,7 @@ abstract class BaseBindingDialog<VB : ViewDataBinding, VM : BaseBindingDialogVie
         val contentView = binding.root
         val laytoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
-            FrameLayout.LayoutParams.WRAP_CONTENT
+            FrameLayout.LayoutParams.MATCH_PARENT
         )
         baseBinding.layBaseContent.addView(contentView, laytoutParams)
 

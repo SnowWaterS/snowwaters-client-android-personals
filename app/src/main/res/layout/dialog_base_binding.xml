@@ -22,7 +22,7 @@
         <FrameLayout
             android:id="@+id/lay_base_content"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:padding="@dimen/base_binding_content_padding"
             app:layout_constraintBottom_toTopOf="@id/tv_confirm_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,8 +50,7 @@
             app:SpinKit_Color="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_base_error_message"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tv_base_error_message" />
 
         <ImageButton
             android:id="@+id/btn_base_dismiss"
@@ -60,12 +59,12 @@
             android:layout_margin="@dimen/base_binding_margin"
             android:background="@android:color/transparent"
             android:contentDescription="@string/base_binding_dialog_close_text"
+            android:onClick="@{view -> viewModel.onDismissButtonClick(view)}"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
-            android:tint="@color/colorPrimaryDark"
-            android:onClick="@{view -> viewModel.onDismissButtonClick(view)}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorPrimaryDark" />
 
         <TextView
             android:id="@+id/tv_dismiss_button"
@@ -79,9 +78,9 @@
             android:text="취소"
             android:textColor="@color/ic_launcher_background"
             android:textSize="@dimen/base_binding_button_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_confirm_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="취소" />
 
 
@@ -96,9 +95,9 @@
             android:text="확인"
             android:textColor="@color/ic_launcher_background"
             android:textSize="@dimen/base_binding_button_text_size"
-            app:layout_constraintStart_toEndOf="@id/tv_dismiss_button"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_dismiss_button"
             tools:text="확인" />
 
 

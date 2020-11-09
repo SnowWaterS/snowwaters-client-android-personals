@@ -25,6 +25,11 @@
     <string name="main_setting_color_title">메인 컬러</string>
     <string name="main_setting_font_title">폰트</string>
 
+    <!-- Bluetooth -->
+    <string name="Bluetooth_connection_title_text" translatable="false">Scanned Bluetooth List</string>
+    <string name="Bluetooth_connection_no_scanned_device_text" translatable="false">There is no bluetooth devices\nscanned nearby.</string>
+
+
     <!-- Printer -->
     <!-- Tab -->
     <string name="printer_title_text" translatable="false">Text</string>
