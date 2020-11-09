@@ -9,32 +9,56 @@
 
         <variable
             name="viewModel"
-            type="com.har.habitforyou.ui.settings.BluetoothConnectionDialogViewModel" />
+            type="com.har.habitforyou.ui.printer.tab.settings.BluetoothConnectionDialogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/base_binding_margin">
 
         <TextView
-            android:id="@+id/text_view"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="테스트 다이얼로그"
-            android:textSize="@dimen/bluetooth_connection_title_text_size"
+            android:fontFamily="@font/font_yeonji"
+            android:text="@string/Bluetooth_connection_title_text"
             android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/bluetooth_connection_title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_color"
+
+        <TextView
+            android:id="@+id/tv_no_scanned_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:drawablePadding="@dimen/base_binding_margin"
+            android:fontFamily="@font/font_yeonji"
+            android:text="@string/Bluetooth_connection_no_scanned_device_text"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/bluetooth_connection_no_device_description_text_size"
+            android:visibility="@{viewModel.scannedListVisibility? View.GONE : View.VISIBLE}"
+            app:drawableStartCompat="@drawable/ic_bluetooth_connected"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_scanned_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/base_binding_margin"
+            android:visibility="@{viewModel.scannedListVisibility? View.VISIBLE : View.GONE}"
+            app:scannedList="@{viewModel.scannedList}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_bluetooth_scanned"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

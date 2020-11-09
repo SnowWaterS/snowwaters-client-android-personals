@@ -1,6 +1,8 @@
-package com.har.habitforyou.ui.settings
+package com.har.habitforyou.ui.printer.tab.settings
 
-import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.har.habitforyou.R
 import com.har.habitforyou.base.BaseBindingDialog
 import com.har.habitforyou.databinding.DialogBluetoothConnectionBinding
@@ -22,6 +24,24 @@ class BluetoothConnectionDialog
     ) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        val adapter = BluetoothScannedListAdapter()
+        adapter.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver() {
+            override fun onChanged() {
+                super.onChanged()
+                checkEmpty()
+            }
+
+            private fun checkEmpty() {
+                viewModel.setScannedListVisibilty(adapter.itemCount != 0)
+            }
+        })
+
+        val layoutManagerForExisting = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        layoutManagerForExisting.isItemPrefetchEnabled = true
+        binding.rvScannedList.adapter = adapter
+        binding.rvScannedList.layoutManager = layoutManagerForExisting
+        binding.rvScannedList.itemAnimator = null
     }
 
     companion object {

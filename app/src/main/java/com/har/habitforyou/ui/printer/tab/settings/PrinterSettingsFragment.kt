@@ -7,8 +7,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.har.habitforyou.R
-import com.har.habitforyou.ui.settings.BluetoothConnectionDialog
-import com.har.habitforyou.util.BluetoothUtil
 
 class PrinterSettingsFragment : PreferenceFragmentCompat(),
     SharedPreferences.OnSharedPreferenceChangeListener {

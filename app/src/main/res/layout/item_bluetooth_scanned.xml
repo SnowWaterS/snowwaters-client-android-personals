@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.har.habitforyou.ui.printer.tab.settings.BluetoothScannedListItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bluetooth_connection_list_item_height"
+        android:padding="@dimen/base_binding_margin">
+
+        <TextView
+            android:id="@+id/tv_device_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_cookierun"
+            android:text="@{viewModel.name}"
+            android:textColor="@color/color_item_text"
+            android:textSize="@dimen/bluetooth_connection_list_item_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="SRP-Q300 00500" />
+
+        <TextView
+            android:id="@+id/tv_device_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_cookierun"
+            android:text="@{viewModel.address}"
+            android:textColor="@color/color_item_text"
+            android:textSize="@dimen/bluetooth_connection_list_item_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_device_name"
+            tools:text="4D:22:88:7A:1B" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
