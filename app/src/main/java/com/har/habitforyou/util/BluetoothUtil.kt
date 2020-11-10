@@ -34,7 +34,7 @@ class BluetoothUtil {
     private var resultCallback: ResultCallback<Set<BluetoothDevice>>? = null
 
     private val REQUEST_ENABLE_BT = 3
-    var btAdapter: BluetoothAdapter? = null
+    var btAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
     var mSocket: BluetoothSocket? = null
     var mInputStream: InputStream? = null
     var mOutputStream: OutputStream? = null
@@ -72,13 +72,16 @@ class BluetoothUtil {
         }
     }
 
-    fun getScannedBluetoothDevices(callback: ResultCallback<Set<BluetoothDevice>>) {
+    fun getPairedDevices(): Set<BluetoothDevice>? {
+        return btAdapter?.bondedDevices
+    }
+
+    fun getScannedDevices(callback: ResultCallback<Set<BluetoothDevice>>) {
         Log.d(TAG, "getScannedBluetoothDevices")
 
         val context = ContextUtil.appContext?.applicationContext
         resultCallback = callback
 
-        btAdapter = BluetoothAdapter.getDefaultAdapter()
         if (btAdapter == null) {
             Toast.makeText(context, "블루투스를 지원하지 않습니다.", Toast.LENGTH_LONG).show()
             resultCallback?.onResult(Result.createResult(-1, "블루투스를 지원하지 않습니다.", setOf()))
@@ -91,13 +94,6 @@ class BluetoothUtil {
             resultCallback?.onResult(Result.createResult(-1, "블루투스를 사용할 수 없습니다.", setOf()))
             return
         }
-
-        // 등록된 기기 리스트
-        val pairedDevices: Set<BluetoothDevice>? = btAdapter?.bondedDevices
-        pairedDevices?.forEach {
-            Log.d(TAG, "블루투스 등록된 기기: ${it.name} + ${it.address}")
-        }
-
 
         registerBroadcastReceiver()
         val startScanningResult = btAdapter?.startDiscovery() ?: false
