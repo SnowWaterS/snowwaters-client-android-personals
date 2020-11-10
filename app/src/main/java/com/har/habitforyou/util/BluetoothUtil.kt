@@ -9,6 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.util.Log
 import android.widget.Toast
+import com.har.habitforyou.`object`.Result
+import com.har.habitforyou.`object`.ResultCallback
 import com.har.habitforyou.constant.BluetoothUUIDConstant
 import java.io.InputStream
 import java.io.OutputStream
@@ -29,18 +31,18 @@ class BluetoothUtil {
     private val scannedBluetoothSet: MutableSet<Pair<String, String>> = mutableSetOf()
     private val scannedBluetoothDevices: MutableSet<BluetoothDevice> = mutableSetOf()
 
+    private var resultCallback: ResultCallback<Set<BluetoothDevice>>? = null
 
     private val REQUEST_ENABLE_BT = 3
-    var mBluetoothAdapter: BluetoothAdapter? = null
-    var mDevices: Set<BluetoothDevice>? = null
-    var mPairedDeviceCount = 0
-    var mRemoteDevice: BluetoothDevice? = null
+    var btAdapter: BluetoothAdapter? = null
     var mSocket: BluetoothSocket? = null
     var mInputStream: InputStream? = null
     var mOutputStream: OutputStream? = null
+
+    var mPairedDeviceCount = 0
+    var mRemoteDevice: BluetoothDevice? = null
     var mWorkerThread: Thread? = null
-    var readBufferPositon //버퍼 내 수신 문자 저장 위치
-            = 0
+    var readBufferPositon = 0 //버퍼 내 수신 문자 저장 위치
     var readBuffer: ByteArray = byteArrayOf()
     var mDelimiter: Byte = 10
 
@@ -48,9 +50,6 @@ class BluetoothUtil {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 BluetoothDevice.ACTION_FOUND -> {
-                    Log.d(TAG, "블루투스 기기 발견!")
-                    // Discovery has found a device. Get the BluetoothDevice
-                    // object and its info from the Intent.
                     val device: BluetoothDevice? =
                         intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
                     device?.let {
@@ -61,45 +60,51 @@ class BluetoothUtil {
                     }
                 }
                 BluetoothAdapter.ACTION_DISCOVERY_STARTED -> {
-                    Log.d(TAG, "블루투스 스캔 시작")
+                    Log.d(TAG, "Bluetooth 스캔 시작")
                     scannedBluetoothSet.clear()
                 }
                 BluetoothAdapter.ACTION_DISCOVERY_FINISHED -> {
-                    Log.d(TAG, "블루투스 스캔 완료")
+                    Log.d(TAG, "Bluetooth 스캔 완료")
                      unregisterBroadcastReceiver()
+                    resultCallback?.onResult(Result.createSuccessResult(scannedBluetoothDevices))
                 }
             }
         }
     }
 
-    fun scannedBluetoothDevices() {
+    fun getScannedBluetoothDevices(callback: ResultCallback<Set<BluetoothDevice>>) {
+        Log.d(TAG, "getScannedBluetoothDevices")
+
         val context = ContextUtil.appContext?.applicationContext
-        val btAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+        resultCallback = callback
+
+        btAdapter = BluetoothAdapter.getDefaultAdapter()
         if (btAdapter == null) {
             Toast.makeText(context, "블루투스를 지원하지 않습니다.", Toast.LENGTH_LONG).show()
-//            return emptyList()
+            resultCallback?.onResult(Result.createResult(-1, "블루투스를 지원하지 않습니다.", setOf()))
             return
         }
 
-        if (!btAdapter.isEnabled) {
+        if (btAdapter?.isEnabled == false) {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             Toast.makeText(context, "블루투스를 활성화 시켜주세요.", Toast.LENGTH_LONG).show()
-
-//            context?.startActivity(enableBtIntent)
-//            return emptyList()
+            resultCallback?.onResult(Result.createResult(-1, "블루투스를 사용할 수 없습니다.", setOf()))
             return
         }
 
         // 등록된 기기 리스트
-        val pairedDevices: Set<BluetoothDevice>? = btAdapter.bondedDevices
+        val pairedDevices: Set<BluetoothDevice>? = btAdapter?.bondedDevices
         pairedDevices?.forEach {
-            Log.d(TAG, "등록된 기기: ${it.name} + ${it.address}")
+            Log.d(TAG, "블루투스 등록된 기기: ${it.name} + ${it.address}")
         }
 
 
         registerBroadcastReceiver()
-        btAdapter.startDiscovery()
-
+        val startScanningResult = btAdapter?.startDiscovery() ?: false
+        if (!startScanningResult) {
+            resultCallback?.onResult(Result.createResult(-1, "블루투스 스캔을 시작할 수 없습니다..", setOf()))
+            return
+        }
     }
 
     fun connectBluetoothDevices(address: String) {
@@ -153,6 +158,7 @@ class BluetoothUtil {
     }
 
     private fun registerBroadcastReceiver() {
+        Log.d(TAG, "블루투스 리시버 등록")
         val filter = IntentFilter()
         filter.addAction(BluetoothDevice.ACTION_FOUND)
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED)
@@ -163,7 +169,7 @@ class BluetoothUtil {
 
     private fun unregisterBroadcastReceiver() {
         scannedBluetoothSet.forEach {
-            Log.d(TAG, "기기: ${it.first} + ${it.second}")
+            Log.d(TAG, "Scanned Devices: ${it.first} + ${it.second}")
         }
         val context = ContextUtil.appContext?.applicationContext
         context?.unregisterReceiver(bluetoothScanBroadcastReceiver)

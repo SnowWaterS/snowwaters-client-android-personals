@@ -74,6 +74,7 @@ abstract class BaseBindingDialog<VB : ViewDataBinding, VM : BaseBindingDialogVie
         _binding = null
     }
 
+    protected open fun getViewModel(): VM { return viewModel }
 
     protected abstract fun getContentLayoutId(): Int
     protected abstract fun getViewModelClass(): Class<VM>

@@ -1,5 +1,6 @@
 package com.har.habitforyou.ui.printer.tab.settings
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,6 +43,12 @@ class BluetoothConnectionDialog
         binding.rvScannedList.adapter = adapter
         binding.rvScannedList.layoutManager = layoutManagerForExisting
         binding.rvScannedList.itemAnimator = null
+
+        initBluetoothConnectionDialog()
+    }
+
+    private fun initBluetoothConnectionDialog() {
+        getViewModel().setScannedDeviceList()
     }
 
     companion object {
