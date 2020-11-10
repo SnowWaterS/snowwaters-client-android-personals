@@ -7,8 +7,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -98,11 +99,18 @@ class MainSplashActivity : AppCompatActivity(), CoroutineScope {
 
     private fun startMainActivity() {
         launch {
+            launch { animation() }
             delay(3000)
 
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
+    }
+
+    suspend fun animation() {
+        val iv = findViewById<ImageView>(R.id.iv_splash_logo)
+        val animation = AnimationUtils.loadAnimation(this, R.anim.anim_scale)
+        iv.startAnimation(animation)
     }
 }
