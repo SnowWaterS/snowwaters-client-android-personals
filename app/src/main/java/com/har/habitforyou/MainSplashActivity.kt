@@ -50,15 +50,13 @@ class MainSplashActivity : AppCompatActivity(), CoroutineScope {
         supportActionBar?.hide()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(
-                        Manifest.permission.ACCESS_COARSE_LOCATION
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
                     ),
                     10
                 )
@@ -85,7 +83,6 @@ class MainSplashActivity : AppCompatActivity(), CoroutineScope {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             if (grantResults.isEmpty() || grantResults.contains(PackageManager.PERMISSION_DENIED)) {
-                Log.d("SPLASH", "권한 ${grantResults[0]}")
                 Toast.makeText(this, "위치 권한이 없으면 앱을 실행 할 수 없습니다.", Toast.LENGTH_LONG).show()
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -100,10 +97,7 @@ class MainSplashActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun startMainActivity() {
-        Log.d("MainSplashActivity", "startMainActivity")
-
         launch {
-            Log.d("MainSplashActivity", "Coroutines")
             delay(3000)
 
             val intent = Intent(applicationContext, MainActivity::class.java)
