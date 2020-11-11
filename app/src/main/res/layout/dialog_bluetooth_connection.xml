@@ -29,7 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tv_no_scanned_device"
             android:layout_width="wrap_content"
@@ -45,19 +44,49 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_paired_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_binding_margin"
+            android:text="페어링된 기기"
+            android:visibility="@{viewModel.pairedListVisibility? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_paired_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/base_binding_margin"
+            android:visibility="@{viewModel.pairedListVisibility? View.VISIBLE : View.GONE}"
+            app:bluetoothDeviceList="@{viewModel.pairedList}"
+            app:layout_constraintTop_toBottomOf="@id/tv_paired_list"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_bluetooth_scanned" />
+
+        <TextView
+            android:id="@+id/tv_scanned_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_binding_margin"
+            android:text="스캔된 기기"
+            android:visibility="@{viewModel.scannedListVisibility? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/rv_paired_list" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_scanned_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="@dimen/base_binding_margin"
             android:visibility="@{viewModel.scannedListVisibility? View.VISIBLE : View.GONE}"
-            app:scannedList="@{viewModel.scannedList}"
+            app:bluetoothDeviceList="@{viewModel.scannedList}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_scanned_list"
             tools:itemCount="5"
-            tools:listitem="@layout/item_bluetooth_scanned"/>
+            tools:listitem="@layout/item_bluetooth_scanned" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

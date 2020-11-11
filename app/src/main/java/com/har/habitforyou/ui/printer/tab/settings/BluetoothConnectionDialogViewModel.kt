@@ -13,18 +13,20 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
     val _pairedList: MutableLiveData<List<BluetoothDevice>> = MutableLiveData()
     val _scannedList: MutableLiveData<List<BluetoothDevice>> = MutableLiveData()
 
+    val _pairedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
     val _scannedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         _pairedList.value = listOf()
         _scannedList.value = listOf()
+        _pairedListVisibility.value = false
         _scannedListVisibility.value = false
     }
 
     val pairedList: LiveData<List<BluetoothDevice>>
         get() = _pairedList
 
-    fun setPaireddList(pairedList: List<BluetoothDevice>) {
+    fun setPairedList(pairedList: List<BluetoothDevice>) {
         _pairedList.postValue(pairedList)
     }
 
@@ -33,6 +35,13 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
 
     fun setScannedList(scannedList: List<BluetoothDevice>) {
         _scannedList.postValue(scannedList)
+    }
+
+    val pairedListVisibility: LiveData<Boolean>
+        get() = _pairedListVisibility
+
+    fun setPairedListVisibilty(isVisible: Boolean) {
+        _pairedListVisibility.postValue(isVisible)
     }
 
     val scannedListVisibility: LiveData<Boolean>
@@ -48,7 +57,7 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
                 if (result.code != -1) {
                     val pairedSet = BluetoothUtil.instance?.getPairedDevices()?.toList()
                     val scannedSet = result.data?.toList()
-                    setPaireddList(pairedSet ?: listOf())
+                    setPairedList(pairedSet ?: listOf())
                     setScannedList(scannedSet?.filter { pairedSet?.contains(it) == false } ?: listOf())
                 }
             }

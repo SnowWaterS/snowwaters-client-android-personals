@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.har.habitforyou.ui.printer.tab.settings.BluetoothScannedListItemViewModel" />
+            type="com.har.habitforyou.ui.printer.tab.settings.BluetoothListItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,9 +20,9 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@{viewModel.type}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_device_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_device_name"
             tools:text="printer" />
 
         <TextView
@@ -34,26 +34,10 @@
             android:text="@{viewModel.name}"
             android:textColor="@color/color_item_text"
             android:textSize="@dimen/bluetooth_connection_list_item_text_size"
-            app:layout_constraintBottom_toTopOf="@id/tv_device_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_device_type"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="SRP-Q300 00500" />
-
-        <TextView
-            android:id="@+id/tv_device_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/base_binding_margin"
-            android:fontFamily="@font/font_cookierun"
-            android:text="@{viewModel.address}"
-            android:textColor="@color/color_item_text"
-            android:textSize="@dimen/bluetooth_connection_list_item_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_device_type"
-            app:layout_constraintTop_toBottomOf="@id/tv_device_name"
-            tools:text="4D:22:88:7A:1B" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

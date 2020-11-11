@@ -3,18 +3,18 @@ package com.har.habitforyou.util
 import android.bluetooth.BluetoothDevice
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.har.habitforyou.ui.printer.tab.settings.BluetoothScannedListAdapter
-import com.har.habitforyou.ui.printer.tab.settings.BluetoothScannedListItemViewModel
+import com.har.habitforyou.ui.printer.tab.settings.BluetoothListAdapter
+import com.har.habitforyou.ui.printer.tab.settings.BluetoothListItemViewModel
 
 object BindingUtil {
 
         @JvmStatic
-        @BindingAdapter("scannedList")
+        @BindingAdapter("bluetoothDeviceList")
         fun getScannedList(recyclerView: RecyclerView, devicesList: List<BluetoothDevice>) {
-            val adapter = recyclerView.adapter as? BluetoothScannedListAdapter ?: return
-            val viewModels: MutableList<BluetoothScannedListItemViewModel> = mutableListOf()
+            val adapter = recyclerView.adapter as? BluetoothListAdapter ?: return
+            val viewModels: MutableList<BluetoothListItemViewModel> = mutableListOf()
             devicesList.forEach {
-                viewModels.add(BluetoothScannedListItemViewModel(it))
+                viewModels.add(BluetoothListItemViewModel(it))
             }
             adapter.setViewModels(viewModels)
         }

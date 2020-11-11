@@ -1,15 +1,16 @@
 package com.har.habitforyou.ui.printer.tab.settings
 
+import android.bluetooth.BluetoothDevice
 import android.util.Log
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.har.habitforyou.R
 import com.har.habitforyou.base.BaseBindingDialog
 import com.har.habitforyou.databinding.DialogBluetoothConnectionBinding
 
-class BluetoothConnectionDialog
-    : BaseBindingDialog<DialogBluetoothConnectionBinding, BluetoothConnectionDialogViewModel>(){
+class BluetoothConnectionDialog :
+    BaseBindingDialog<DialogBluetoothConnectionBinding, BluetoothConnectionDialogViewModel>(),
+    BluetoothSelectListener {
 
     override fun getContentLayoutId(): Int {
         return R.layout.dialog_bluetooth_connection
@@ -26,22 +27,43 @@ class BluetoothConnectionDialog
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = BluetoothScannedListAdapter()
-        adapter.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver() {
+        val pairedListAdapter = BluetoothListAdapter()
+        pairedListAdapter.setBluetoothSelectListener(this)
+        pairedListAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onChanged() {
                 super.onChanged()
                 checkEmpty()
             }
 
             private fun checkEmpty() {
-                viewModel.setScannedListVisibilty(adapter.itemCount != 0)
+                viewModel.setPairedListVisibilty(pairedListAdapter.itemCount != 0)
             }
         })
 
-        val layoutManagerForExisting = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        layoutManagerForExisting.isItemPrefetchEnabled = true
-        binding.rvScannedList.adapter = adapter
-        binding.rvScannedList.layoutManager = layoutManagerForExisting
+        val layoutManagerForPaired = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        layoutManagerForPaired.isItemPrefetchEnabled = true
+        binding.rvPairedList.adapter = pairedListAdapter
+        binding.rvPairedList.layoutManager = layoutManagerForPaired
+        binding.rvPairedList.itemAnimator = null
+
+
+        val scannedListAdapter = BluetoothListAdapter()
+        scannedListAdapter.setBluetoothSelectListener(this)
+        scannedListAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onChanged() {
+                super.onChanged()
+                checkEmpty()
+            }
+
+            private fun checkEmpty() {
+                viewModel.setScannedListVisibilty(scannedListAdapter.itemCount != 0)
+            }
+        })
+
+        val layoutManagerForScanned = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        layoutManagerForScanned.isItemPrefetchEnabled = true
+        binding.rvScannedList.adapter = scannedListAdapter
+        binding.rvScannedList.layoutManager = layoutManagerForScanned
         binding.rvScannedList.itemAnimator = null
 
         initBluetoothConnectionDialog()
@@ -56,6 +78,10 @@ class BluetoothConnectionDialog
         fun instance(): BluetoothConnectionDialog {
             return BluetoothConnectionDialog()
         }
+    }
+
+    override fun onSelect(position: Int, bluetoothDevice: BluetoothDevice) {
+        Log.d("Bluetooth", "postion: $position, device: ${bluetoothDevice.name}")
     }
 
 }
