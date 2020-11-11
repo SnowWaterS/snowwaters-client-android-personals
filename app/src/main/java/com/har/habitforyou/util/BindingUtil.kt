@@ -1,6 +1,8 @@
 package com.har.habitforyou.util
 
 import android.bluetooth.BluetoothDevice
+import android.view.View
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.har.habitforyou.ui.printer.tab.settings.BluetoothListAdapter
@@ -15,7 +17,13 @@ object BindingUtil {
             val viewModels: MutableList<BluetoothListItemViewModel> = mutableListOf()
             devicesList.forEach {
                 viewModels.add(BluetoothListItemViewModel(it))
+    @JvmStatic
+    @BindingAdapter("stringRes")
+    fun getStringRes(view: View, resId: Int) {
+        if (resId > 0) {
+            if (view is TextView) {
+                view.setText(resId)
             }
-            adapter.setViewModels(viewModels)
         }
- }
+    }
+}

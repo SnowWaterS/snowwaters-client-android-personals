@@ -21,6 +21,8 @@
     <dimen name="base_binding_margin">10dp</dimen>
     <dimen name="base_binding_close_button_size">45dp</dimen>
     <dimen name="base_binding_button_text_size">20sp</dimen>
+    <dimen name="base_binding_loading_text_size">20sp</dimen>
+
 
     <dimen name="bluetooth_connection_title_text_size">25sp</dimen>
     <dimen name="bluetooth_connection_no_device_description_text_size">20sp</dimen>
