@@ -70,6 +70,7 @@ class BluetoothConnectionDialog :
     }
 
     private fun initBluetoothConnectionDialog() {
+        getViewModel().showLoading()
         getViewModel().setScannedDeviceList()
     }
 

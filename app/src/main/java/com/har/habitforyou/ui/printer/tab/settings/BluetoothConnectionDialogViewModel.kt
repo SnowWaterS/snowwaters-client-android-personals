@@ -13,12 +13,14 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
     val _pairedList: MutableLiveData<List<BluetoothDevice>> = MutableLiveData()
     val _scannedList: MutableLiveData<List<BluetoothDevice>> = MutableLiveData()
 
+    val _noDeviceTextViewVisibility: MutableLiveData<Boolean> = MutableLiveData()
     val _pairedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
     val _scannedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         _pairedList.value = listOf()
         _scannedList.value = listOf()
+        _noDeviceTextViewVisibility.value = false
         _pairedListVisibility.value = false
         _scannedListVisibility.value = false
     }
@@ -35,6 +37,13 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
 
     fun setScannedList(scannedList: List<BluetoothDevice>) {
         _scannedList.postValue(scannedList)
+    }
+
+    val noDeviceTextViewVisibility: LiveData<Boolean>
+        get() = _noDeviceTextViewVisibility
+
+    fun setNoDeviceTextViewVisibility(isVisible: Boolean) {
+        _noDeviceTextViewVisibility.postValue(isVisible)
     }
 
     val pairedListVisibility: LiveData<Boolean>
@@ -54,11 +63,16 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
     fun setScannedDeviceList() {
         BluetoothUtil.instance?.getScannedDevices(object: ResultCallback<Set<BluetoothDevice>> {
             override fun onResult(result: Result<Set<BluetoothDevice>>) {
+                hideLoading()
                 if (result.code != -1) {
                     val pairedSet = BluetoothUtil.instance?.getPairedDevices()?.toList()
                     val scannedSet = result.data?.toList()
                     setPairedList(pairedSet ?: listOf())
                     setScannedList(scannedSet?.filter { pairedSet?.contains(it) == false } ?: listOf())
+                } else {
+                    setPairedList(listOf())
+                    setScannedList(listOf())
+                    setNoDeviceTextViewVisibility(true)
                 }
             }
         })

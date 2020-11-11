@@ -39,7 +39,7 @@
             android:text="@string/Bluetooth_connection_no_scanned_device_text"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/bluetooth_connection_no_device_description_text_size"
-            android:visibility="@{viewModel.scannedListVisibility? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.noDeviceTextViewVisibility? View.VISIBLE : View.GONE}"
             app:drawableStartCompat="@drawable/ic_bluetooth_connected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
