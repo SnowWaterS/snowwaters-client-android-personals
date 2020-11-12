@@ -2,6 +2,7 @@ package com.har.habitforyou.ui.printer.tab.settings
 
 import android.bluetooth.BluetoothDevice
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.har.habitforyou.R
@@ -83,6 +84,11 @@ class BluetoothConnectionDialog :
 
     override fun onSelect(position: Int, bluetoothDevice: BluetoothDevice) {
         Log.d("Bluetooth", "postion: $position, device: ${bluetoothDevice.name}")
+        if (getViewModel().isDeivcePrinter(bluetoothDevice.bluetoothClass.majorDeviceClass)) {
+            getViewModel().connectToBluetoothDevice(bluetoothDevice)
+        } else {
+            Toast.makeText(context, "블루투스 프린터가 아닙니다.", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

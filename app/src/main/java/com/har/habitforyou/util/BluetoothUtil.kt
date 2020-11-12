@@ -103,7 +103,28 @@ class BluetoothUtil {
         }
     }
 
+    fun bindBluetoothDevices(bluetoothDevice: BluetoothDevice) {
+        Log.d(TAG, "bindBluetoothDevices")
+//        // 페어링 하기
+//        val createBoneMethod = bluetoothDevice.javaClass.getMethod("createBond", null)
+//        createBoneMethod.invoke(bluetoothDevice, null)
+
+        val pairingPin = "0000"
+        bluetoothDevice.setPin( pairingPin.toByteArray() )
+        val bondResult = bluetoothDevice.createBond()
+        Log.d(TAG, "bindBluetoothDevices: $bondResult")
+
+    }
+
+    fun unbindBluetoothDevices(bluetoothDevice: BluetoothDevice) {
+        // 페어링 끊기
+        val removeBondMethod = bluetoothDevice.javaClass.getMethod("removeBond", null)
+        removeBondMethod.invoke(bluetoothDevice, null)
+
+    }
+
     fun connectBluetoothDevices(address: String) {
+        Log.d(TAG, "connectBluetoothDevices")
         val context = ContextUtil.appContext?.applicationContext
         val btAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
         if (btAdapter == null) {
@@ -117,21 +138,8 @@ class BluetoothUtil {
             return
         }
 
-        // 페어링
-        val curDevice = scannedBluetoothDevices.first()
-        val createBoneMethod = curDevice.javaClass.getMethod("createBond", null)
-        createBoneMethod.invoke(curDevice, null)
 
-        val pairingPin = "0000"
-        curDevice.setPin( pairingPin.toByteArray() )
-        curDevice.createBond()
-
-//        // 페어링 끊기
-//        val removeBondMethod = curDevice.javaClass.getMethod("removeBond", null)
-//        removeBondMethod.invoke(curDevice, null)
-//
-//        curDevice.removeBond()
-
+        val curDevice = btAdapter.getRemoteDevice(address)
 
         // 연결을 위한 소켓 오픈
         val uuid = UUID.fromString(BluetoothUUIDConstant.BASE_UUID)
@@ -151,6 +159,7 @@ class BluetoothUtil {
     }
 
     fun disconnectBluetoothDevices() {
+
     }
 
     private fun registerBroadcastReceiver() {

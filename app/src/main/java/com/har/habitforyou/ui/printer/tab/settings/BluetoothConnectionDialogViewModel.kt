@@ -1,5 +1,6 @@
 package com.har.habitforyou.ui.printer.tab.settings
 
+import android.bluetooth.BluetoothClass
 import android.bluetooth.BluetoothDevice
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -76,6 +77,20 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
                 }
             }
         })
+    }
+
+    fun isDeivcePrinter(type: Int): Boolean {
+        return type == BluetoothClass.Device.Major.IMAGING
+    }
+
+    fun connectToBluetoothDevice(bluetoothDevice: BluetoothDevice) {
+        val pairedList = _pairedList.value ?: listOf()
+        if (pairedList.contains(bluetoothDevice)) {
+            BluetoothUtil.instance?.connectBluetoothDevices(bluetoothDevice.address)
+        } else {
+            BluetoothUtil.instance?.bindBluetoothDevices(bluetoothDevice)
+        }
+
     }
 
 }
