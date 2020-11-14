@@ -11,32 +11,32 @@ import com.har.habitforyou.util.BluetoothUtil
 
 class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
 
-    val _pairedList: MutableLiveData<List<BluetoothDevice>> = MutableLiveData()
-    val _scannedList: MutableLiveData<List<BluetoothDevice>> = MutableLiveData()
+    private val _pairedList: MutableLiveData<Pair<List<BluetoothDevice>, Boolean>> = MutableLiveData()
+    private val _scannedList: MutableLiveData<Pair<List<BluetoothDevice>, Boolean>> = MutableLiveData()
 
-    val _noDeviceTextViewVisibility: MutableLiveData<Boolean> = MutableLiveData()
-    val _pairedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
-    val _scannedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
+    private val _noDeviceTextViewVisibility: MutableLiveData<Boolean> = MutableLiveData()
+    private val _pairedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
+    private val _scannedListVisibility: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
-        _pairedList.value = listOf()
-        _scannedList.value = listOf()
+        _pairedList.value = Pair(listOf(), false)
+        _scannedList.value = Pair(listOf(), false)
         _noDeviceTextViewVisibility.value = false
         _pairedListVisibility.value = false
         _scannedListVisibility.value = false
     }
 
-    val pairedList: LiveData<List<BluetoothDevice>>
+    val pairedList: LiveData<Pair<List<BluetoothDevice>, Boolean>>
         get() = _pairedList
 
-    fun setPairedList(pairedList: List<BluetoothDevice>) {
+    fun setPairedList(pairedList: Pair<List<BluetoothDevice>, Boolean>) {
         _pairedList.postValue(pairedList)
     }
 
-    val scannedList: LiveData<List<BluetoothDevice>>
+    val scannedList: LiveData<Pair<List<BluetoothDevice>, Boolean>>
         get() = _scannedList
 
-    fun setScannedList(scannedList: List<BluetoothDevice>) {
+    fun setScannedList(scannedList: Pair<List<BluetoothDevice>, Boolean>) {
         _scannedList.postValue(scannedList)
     }
 
@@ -68,11 +68,11 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
                 if (result.code != -1) {
                     val pairedSet = BluetoothUtil.instance?.getPairedDevices()?.toList()
                     val scannedSet = result.data?.toList()
-                    setPairedList(pairedSet ?: listOf())
-                    setScannedList(scannedSet?.filter { pairedSet?.contains(it) == false } ?: listOf())
+                    setPairedList(Pair(pairedSet ?: listOf(), true))
+                    setScannedList(Pair(scannedSet?.filter { pairedSet?.contains(it) == false } ?: listOf(), false))
                 } else {
-                    setPairedList(listOf())
-                    setScannedList(listOf())
+                    setPairedList(Pair(listOf(), true))
+                    setScannedList(Pair(listOf(), true))
                     setNoDeviceTextViewVisibility(true)
                 }
             }
@@ -84,7 +84,7 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
     }
 
     fun connectToBluetoothDevice(bluetoothDevice: BluetoothDevice) {
-        val pairedList = _pairedList.value ?: listOf()
+        val pairedList = _pairedList.value?.first ?: listOf()
         if (pairedList.contains(bluetoothDevice)) {
             BluetoothUtil.instance?.connectBluetoothDevices(bluetoothDevice.address)
         } else {

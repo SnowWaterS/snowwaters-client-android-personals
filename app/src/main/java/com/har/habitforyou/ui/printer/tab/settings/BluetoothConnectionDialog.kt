@@ -83,7 +83,7 @@ class BluetoothConnectionDialog :
     }
 
     override fun onSelect(position: Int, bluetoothDevice: BluetoothDevice) {
-        Log.d("Bluetooth", "postion: $position, device: ${bluetoothDevice.name}")
+        Log.d("Bluetooth", "postion: $position, device: ${bluetoothDevice.name}, ${bluetoothDevice.address}")
         if (getViewModel().isDeivcePrinter(bluetoothDevice.bluetoothClass.majorDeviceClass)) {
             getViewModel().connectToBluetoothDevice(bluetoothDevice)
         } else {

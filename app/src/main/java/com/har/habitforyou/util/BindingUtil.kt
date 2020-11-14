@@ -12,11 +12,11 @@ object BindingUtil {
 
     @JvmStatic
     @BindingAdapter("bluetoothDeviceList")
-    fun getScannedList(recyclerView: RecyclerView, devicesList: List<BluetoothDevice>) {
+    fun getScannedList(recyclerView: RecyclerView, devicesList: Pair<List<BluetoothDevice>, Boolean>) {
         val adapter = recyclerView.adapter as? BluetoothListAdapter ?: return
         val viewModels: MutableList<BluetoothListItemViewModel> = mutableListOf()
-        devicesList.forEach {
-            viewModels.add(BluetoothListItemViewModel(it))
+        devicesList.first.forEach {
+            viewModels.add(BluetoothListItemViewModel(it, devicesList.second))
         }
         adapter.setViewModels(viewModels)
     }
