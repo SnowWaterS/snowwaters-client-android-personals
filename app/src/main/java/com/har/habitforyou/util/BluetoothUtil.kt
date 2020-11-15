@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.har.habitforyou.`object`.Result
 import com.har.habitforyou.`object`.ResultCallback
 import com.har.habitforyou.constant.BluetoothUUIDConstant
+import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
@@ -32,6 +33,8 @@ class BluetoothUtil {
     private val scannedBluetoothDevices: MutableSet<BluetoothDevice> = mutableSetOf()
 
     private var resultCallback: ResultCallback<Set<BluetoothDevice>>? = null
+
+    private var bluetoothAddress: String = ""
 
     private val REQUEST_ENABLE_BT = 3
     var btAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
@@ -65,7 +68,7 @@ class BluetoothUtil {
                 }
                 BluetoothAdapter.ACTION_DISCOVERY_FINISHED -> {
                     Log.d(TAG, "Bluetooth 스캔 완료")
-                     unregisterBroadcastReceiver()
+                    unregisterBroadcastReceiver()
                     resultCallback?.onResult(Result.createSuccessResult(scannedBluetoothDevices))
                 }
             }
@@ -110,7 +113,7 @@ class BluetoothUtil {
 //        createBoneMethod.invoke(bluetoothDevice, null)
 
         val pairingPin = "0000"
-        bluetoothDevice.setPin( pairingPin.toByteArray() )
+        bluetoothDevice.setPin(pairingPin.toByteArray())
         val bondResult = bluetoothDevice.createBond()
         Log.d(TAG, "bindBluetoothDevices: $bondResult")
 
@@ -147,19 +150,28 @@ class BluetoothUtil {
         try {
             mSocket = curDevice.createRfcommSocketToServiceRecord(uuid)
             mSocket?.connect()
+            bluetoothAddress = address
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
+        try {
             mOutputStream = mSocket?.outputStream
             mInputStream = mSocket?.inputStream
-
-
-
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     fun disconnectBluetoothDevices() {
+        mOutputStream?.close()
+        mOutputStream = null
 
+        mInputStream?.close()
+        mInputStream = null
+
+        mSocket?.close()
+        mSocket = null
     }
 
     private fun registerBroadcastReceiver() {
@@ -178,6 +190,15 @@ class BluetoothUtil {
         }
         val context = ContextUtil.appContext?.applicationContext
         context?.unregisterReceiver(bluetoothScanBroadcastReceiver)
+    }
+
+    fun sendData(message: String) {
+        val msgBuffer = message.toByteArray()
+        try {
+            mOutputStream?.write(msgBuffer)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 
 }
