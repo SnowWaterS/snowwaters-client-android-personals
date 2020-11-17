@@ -1,4 +1,4 @@
-package com.har.habitforyou.escposprinter
+package com.har.habitforyou.util.escposprinter
 
 class Commands {
 
