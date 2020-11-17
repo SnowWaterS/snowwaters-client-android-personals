@@ -20,6 +20,9 @@ class BluetoothBleService: Service() {
     private var _bluetoothDeviceAddress: String = ""
     private var _bluetoothGatt: BluetoothGatt? = null
 
+    private var _sendByteCounter = 0
+    private var _sendData: ByteArray? = null
+
     private val TX_POWER_LEVEL_UUID = UUID.fromString("00002a07-0000-1000-8000-00805f9b34fb")
     private val FIRMWARE_REVISON_UUID = UUID.fromString("00002a26-0000-1000-8000-00805f9b34fb")
 
@@ -60,6 +63,13 @@ class BluetoothBleService: Service() {
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 Log.i(TAG, "onCharacteristicRead $characteristic")
             }
+        }
+
+        override fun onCharacteristicWrite(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, status: Int) {
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                Log.i(TAG, "onCharacteristicRead $characteristic")
+            }
+            send()
         }
 
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
@@ -116,10 +126,48 @@ class BluetoothBleService: Service() {
         _bluetoothAdapter = null
     }
 
-    fun writeRXCharacteristic(value: ByteArray?) {
+    fun enableWrite() {
+        val rxService = _bluetoothGatt?.getService(RX_SERVICE_UUID) ?: return
+        val txChar = rxService.getCharacteristic(TX_CHAR_UUID) ?: return
+
+        _bluetoothGatt?.setCharacteristicNotification(txChar, true)
+
+        val descriptor = txChar.getDescriptor(CCCD)
+        descriptor.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+        _bluetoothGatt?.writeDescriptor(descriptor)
+    }
+
+    fun disableWrite() {
+        val rxService = _bluetoothGatt?.getService(RX_SERVICE_UUID) ?: return
+        val txChar = rxService.getCharacteristic(TX_CHAR_UUID) ?: return
+
+        _bluetoothGatt?.setCharacteristicNotification(txChar, false)
+
+        val descriptor = txChar.getDescriptor(CCCD)
+        descriptor.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+        _bluetoothGatt?.writeDescriptor(descriptor)
+    }
+
+    fun sendData(data: ByteArray?) {
+        _sendData = data
+        send()
+    }
+
+    private fun send() {
+        if (_sendData == null || _sendByteCounter >= _sendData?.size ?: 0) {
+            _sendByteCounter = 0
+            _sendData = null
+            return
+        }
+
         val rxService: BluetoothGattService = _bluetoothGatt?.getService(RX_SERVICE_UUID) ?: return
         val rxChar = rxService.getCharacteristic(RX_CHAR_UUID)
-        rxChar.value = value
+        val startIndex = _sendByteCounter
+        val endIndex = _sendByteCounter + 20.coerceAtMost(_sendData?.size ?: 0)
+        val curData = _sendData?.copyOfRange(startIndex, endIndex)
+
+        _sendByteCounter = endIndex + 1
+        rxChar.value = curData
 
         val status: Boolean = _bluetoothGatt?.writeCharacteristic(rxChar) ?: false
     }
