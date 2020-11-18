@@ -8,7 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.har.habitforyou.R
+import com.har.habitforyou.databinding.FragmentPhotosBinding
 import com.har.habitforyou.ui.photos.dummy.DummyContent
 import com.har.habitforyou.ui.photos.photoItem.PhotoItemRecyclerViewAdapter
 
@@ -17,47 +22,35 @@ import com.har.habitforyou.ui.photos.photoItem.PhotoItemRecyclerViewAdapter
  */
 class PhotosFragment : Fragment() {
 
-    private var columnCount = 3
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
+    companion object {
+        fun newInstance() = PhotosFragment()
     }
+
+    private var _binding: FragmentPhotosBinding? = null
+    private val binding get() = _binding ?: throw NullPointerException("FragmentPhotoBinging is Null")
+    private lateinit var viewModel: PhotosFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_photos_list, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = PhotoItemRecyclerViewAdapter(DummyContent.ITEMS)
-            }
-        }
-        return view
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photos, container, false)
+        return binding.root
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(PhotosFragmentViewModel::class.java)
+        binding.viewModel = viewModel
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
+        val photosPagerAdapter = PhotosPagerAdapter(this)
+        binding.vpPhoto.adapter = photosPagerAdapter
+        binding.vpPhoto.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            PhotosFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
+        TabLayoutMediator(binding.tlPhoto, binding.vpPhoto) { tab, position ->
+            tab.text = getString(photosPagerAdapter.getTitleResId(position))
+            tab.setIcon(photosPagerAdapter.getIconResId(position))
+            tab.customView = photosPagerAdapter.getView(position)
+        }.attach()
     }
 }

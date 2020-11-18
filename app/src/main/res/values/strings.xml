@@ -61,4 +61,9 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
+    <!-- Photos -->
+    <!-- Tab -->
+    <string name="photos_title_photos" translatable="false">Photos</string>
+    <string name="photos_title_edit" translatable="false">Edit</string>
+
 </resources>
