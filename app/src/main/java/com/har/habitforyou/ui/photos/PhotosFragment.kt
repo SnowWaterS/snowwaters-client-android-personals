@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.har.habitforyou.R
 import com.har.habitforyou.ui.photos.dummy.DummyContent
+import com.har.habitforyou.ui.photos.photoItem.PhotoItemRecyclerViewAdapter
 
 /**
  * A fragment representing a list of Items.

@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.photos
+package com.har.habitforyou.ui.photos.photoItem
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
