@@ -22,7 +22,6 @@ class PrinterFragment : Fragment() {
     private var _binding: FragmentPrinterBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("FragmentPrinterBinding is Null")
     private lateinit var viewModel: PrinterFragmentViewModel
-    private lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +40,10 @@ class PrinterFragment : Fragment() {
         binding.vpPrinter.adapter = printerPagerAdapter
         binding.vpPrinter.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        TabLayoutMediator(binding.tlPrinter, binding.vpPrinter,
-            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-                tab.text = getString(printerPagerAdapter.getTitleResId(position))
-                tab.setIcon(printerPagerAdapter.getIconResId(position))
-            }).attach()
+        TabLayoutMediator(binding.tlPrinter, binding.vpPrinter
+        ) { tab, position ->
+            tab.text = getString(printerPagerAdapter.getTitleResId(position))
+            tab.setIcon(printerPagerAdapter.getIconResId(position))
+        }.attach()
     }
 }
