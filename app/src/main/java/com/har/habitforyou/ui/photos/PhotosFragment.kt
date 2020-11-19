@@ -1,21 +1,19 @@
 package com.har.habitforyou.ui.photos
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableLayout
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.har.habitforyou.R
 import com.har.habitforyou.databinding.FragmentPhotosBinding
-import com.har.habitforyou.ui.photos.dummy.DummyContent
-import com.har.habitforyou.ui.photos.photoItem.PhotoItemRecyclerViewAdapter
+
 
 /**
  * A fragment representing a list of Items.
@@ -47,7 +45,7 @@ class PhotosFragment : Fragment() {
         binding.vpPhoto.adapter = photosPagerAdapter
         binding.vpPhoto.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        TabLayoutMediator(binding.tlPhoto, binding.vpPhoto) { tab, position ->
+        TabLayoutMediator(binding.tlPhoto, binding.vpPhoto) { tab: TabLayout.Tab, position ->
             tab.text = getString(photosPagerAdapter.getTitleResId(position))
             tab.setIcon(photosPagerAdapter.getIconResId(position))
             tab.customView = photosPagerAdapter.getView(position)

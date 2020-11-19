@@ -4,13 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tab_photos">
 
     <ImageView
         android:id="@+id/iv_tab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_photo_album"/>
 
+    <TextView
+        android:id="@+id/tv_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/iv_tab"
+        app:layout_constraintTop_toTopOf="@id/iv_tab"
+        app:layout_constraintBottom_toBottomOf="@id/iv_tab"
+        tools:text="Photos"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

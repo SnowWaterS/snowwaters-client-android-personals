@@ -8,4 +8,6 @@ class PhotoEditFragment: Fragment() {
     companion object {
         fun newInstance() = PhotoEditFragment()
     }
+
+
 }

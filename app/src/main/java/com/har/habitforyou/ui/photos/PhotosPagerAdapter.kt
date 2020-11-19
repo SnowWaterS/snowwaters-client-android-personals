@@ -28,8 +28,10 @@ class PhotosPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     fun getView(position: Int): View {
         val view = LayoutInflater.from(ContextUtil.appContext).inflate(R.layout.tab_photo, null)
-        val img = view.findViewById<View>(R.id.iv_tab) as ImageView
+        val img = view.findViewById<ImageView>(R.id.iv_tab)
         img.setImageResource(getIconResId(position))
+        val text = view.findViewById<TextView>(R.id.tv_tab)
+        text.setText(getTitleResId(position))
         return view
     }
 
