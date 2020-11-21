@@ -13,4 +13,8 @@
 
     <color name="color_item_text">#222222</color>
 
+    <color name="color_dot_selected">#10b2f2</color>
+    <color name="color_dot_default">#e1e1e1</color>
+
+
 </resources>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.har.habitforyou.R
+import com.har.habitforyou.onboarding.OnBoardingFragment
 
 class HomeFragment : Fragment() {
 
@@ -20,6 +21,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        OnBoardingFragment.newInstance().show(parentFragmentManager, "onBoardingFragment")
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
