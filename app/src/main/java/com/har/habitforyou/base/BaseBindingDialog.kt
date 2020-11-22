@@ -57,7 +57,7 @@ abstract class BaseBindingDialog<VB : ViewDataBinding, VM : BaseBindingDialogVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(getViewModelClass())
-        viewModel.getDismissEvent().observe(this, Observer { isDismiss ->
+        viewModel.getDismissEvent().observe(this, { isDismiss ->
             if (isDismiss) {
                 dismissAllowingStateLoss()
             }

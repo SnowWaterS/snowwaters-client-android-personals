@@ -21,6 +21,8 @@
     <string name="base_binding_dialog_default_loading_text" translatable="false">Please wait for a while...</string>
 
 
+    <string name="on_boarding_button_start_title" translatable="false">Start</string>
+
     <string name="home_title" translatable="false">Habit For You</string>
     <string name="home_description" translatable="false">Do you want a new habit?\nThis app will help you!\nTry it for your furture!!</string>
 
