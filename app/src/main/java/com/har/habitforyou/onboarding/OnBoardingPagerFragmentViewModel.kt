@@ -7,16 +7,17 @@ import androidx.lifecycle.ViewModel
 class OnBoardingPagerFragmentViewModel: ViewModel() {
 
     private val _position: MutableLiveData<String> = MutableLiveData()
-
-    private val _dismissEvent: MutableLiveData<Boolean> = MutableLiveData()
-
     private val _btnStartVisibility: MutableLiveData<Boolean> = MutableLiveData()
+    private val _dismissEvent: MutableLiveData<Boolean> = MutableLiveData()
 
     val position
         get() = _position
 
     val btnStartVisibility
         get() = _btnStartVisibility
+
+    val dismissEvent
+        get() = _dismissEvent
 
     init {
         _position.value = ""
@@ -27,15 +28,19 @@ class OnBoardingPagerFragmentViewModel: ViewModel() {
     }
 
     fun setPosition(position: Int) {
-        val testText = "Show from Pager #$position+1"
+        val testText = "Show from Pager #${position+1}"
         _position.postValue(testText)
+
+        if (position == 3) {
+            _btnStartVisibility.postValue(true)
+        }
     }
 
     fun onClickBtnStart(view: View) {
         onDismiss()
     }
 
-    fun onDismiss() {
-        // set listener and close the dialog
+    private fun onDismiss() {
+        _dismissEvent.postValue(true)
     }
 }

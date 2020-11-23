@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.har.habitforyou.R
 import com.har.habitforyou.databinding.FragmentOnboardingBinding
 
-class OnBoardingFragment: DialogFragment() {
+class OnBoardingFragment: DialogFragment(), OnBoardingCloseListener {
 
     companion object {
         fun newInstance() = OnBoardingFragment()
@@ -33,10 +33,15 @@ class OnBoardingFragment: DialogFragment() {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_onboarding, container, false)
 
         val onBoardingPagerAdapter = OnBoardingPagerAdapter(this)
+        onBoardingPagerAdapter.setCloseListener(this)
         binding.vpOnboarding.adapter = onBoardingPagerAdapter
         binding.vpOnboarding.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         TabLayoutMediator(binding.tlOnboarding, binding.vpOnboarding) { _, _ -> }.attach()
         return binding.root
+    }
+
+    override fun onDismss() {
+        dismissAllowingStateLoss()
     }
 }
