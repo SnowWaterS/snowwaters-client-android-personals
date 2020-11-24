@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
 import com.har.habitforyou.databinding.ActivityMainBinding
+import com.har.habitforyou.onboarding.OnBoardingFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.title == getString(R.string.main_menu_settings)) {
-            Toast.makeText(this, "메뉴가 눌렸어요!", Toast.LENGTH_LONG).show()
+            OnBoardingFragment.newInstance().show(supportFragmentManager, "onBoardingFragment")
             return true
         }
 
