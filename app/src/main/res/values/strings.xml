@@ -12,7 +12,7 @@
     <string name="main_navigation_videos" translatable="false">Videos</string>
     <string name="main_navigation_settings" translatable="false">Settings</string>
 
-    <string name="main_menu_settings" translatable="false">Settings</string>
+    <string name="main_menu_how_to_use" translatable="false">How to Use</string>
 
     <string name="nav_header_title" translatable="false">Habbit For You</string>
     <string name="nav_header_desc" translatable="false">Navigation Header</string>

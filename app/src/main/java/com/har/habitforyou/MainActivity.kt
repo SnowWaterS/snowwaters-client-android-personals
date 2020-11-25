@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.title == getString(R.string.main_menu_settings)) {
+        if (item.title == getString(R.string.main_menu_how_to_use)) {
             OnBoardingFragment.newInstance().show(supportFragmentManager, "onBoardingFragment")
             return true
         }
