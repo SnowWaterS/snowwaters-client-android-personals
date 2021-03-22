@@ -84,11 +84,11 @@ class BluetoothConnectionDialog :
 
     override fun onSelect(position: Int, bluetoothDevice: BluetoothDevice) {
         Log.d("Bluetooth", "postion: $position, device: ${bluetoothDevice.name}, ${bluetoothDevice.address}")
-        if (getViewModel().isDeivcePrinter(bluetoothDevice.bluetoothClass.majorDeviceClass)) {
+        // if (getViewModel().isDeivcePrinter(bluetoothDevice.bluetoothClass.majorDeviceClass)) {
             getViewModel().connectToBluetoothDevice(bluetoothDevice)
-        } else {
-            Toast.makeText(context, "블루투스 프린터가 아닙니다.", Toast.LENGTH_SHORT).show()
-        }
+//        } else {
+//            Toast.makeText(context, "블루투스 프린터가 아닙니다.", Toast.LENGTH_SHORT).show()
+//        }
     }
 
 }

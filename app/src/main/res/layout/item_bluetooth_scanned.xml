@@ -41,6 +41,20 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="SRP-Q300 00500" />
 
+        <TextView
+            android:id="@+id/tv_device_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/base_binding_margin"
+            android:fontFamily="@font/font_cookierun"
+            android:text="@{viewModel.address}"
+            android:textColor="@color/color_item_text"
+            android:textSize="@dimen/bluetooth_connection_list_item_subtext_size"
+            app:layout_constraintEnd_toStartOf="@id/iv_device_unbind"
+            app:layout_constraintStart_toEndOf="@id/tv_device_type"
+            app:layout_constraintTop_toBottomOf="@id/tv_device_name"
+            tools:text="SRP-Q300 00500" />
+
         <ImageView
             android:id="@+id/iv_device_unbind"
             android:layout_width="wrap_content"

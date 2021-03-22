@@ -84,12 +84,14 @@ class BluetoothConnectionDialogViewModel : BaseBindingDialogViewModel() {
     }
 
     fun connectToBluetoothDevice(bluetoothDevice: BluetoothDevice) {
-        val pairedList = _pairedList.value?.first ?: listOf()
-        if (pairedList.contains(bluetoothDevice)) {
-            BluetoothUtil.instance?.connectBluetoothDevices(bluetoothDevice.address)
-        } else {
-            BluetoothUtil.instance?.bindBluetoothDevices(bluetoothDevice)
-        }
+        BluetoothUtil.instance?.connectBluetoothDevices(bluetoothDevice.address)
+
+//        val pairedList = _pairedList.value?.first ?: listOf()
+//        if (pairedList.contains(bluetoothDevice)) {
+//            BluetoothUtil.instance?.connectBluetoothDevices(bluetoothDevice.address)
+//        } else {
+//            BluetoothUtil.instance?.bindBluetoothDevices(bluetoothDevice)
+//        }
 
     }
 

@@ -28,5 +28,6 @@
     <dimen name="bluetooth_connection_no_device_description_text_size">20sp</dimen>
     <dimen name="bluetooth_connection_list_item_height">70dp</dimen>
     <dimen name="bluetooth_connection_list_item_text_size">20sp</dimen>
+    <dimen name="bluetooth_connection_list_item_subtext_size">16sp</dimen>
 
 </resources>
