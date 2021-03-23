@@ -17,10 +17,10 @@ class PrinterPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
-                PrinterTextFragment()
+                PrinterImageFragment()
             }
             1 -> {
-                PrinterImageFragment()
+                PrinterTextFragment()
             }
             2 -> {
                 PrinterExtensionFragment()
@@ -34,10 +34,10 @@ class PrinterPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     fun getTitleResId(position: Int): Int {
         return when (position) {
             0 -> {
-                R.string.printer_title_text
+                R.string.printer_title_image
             }
             1 -> {
-                R.string.printer_title_image
+                R.string.printer_title_text
             }
             2 -> {
                 R.string.printer_title_extension
@@ -51,10 +51,10 @@ class PrinterPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     fun getIconResId(position: Int): Int {
         return when (position) {
             0 -> {
-                R.drawable.ic_priner_text
+                R.drawable.ic_printer_image
             }
             1 -> {
-                R.drawable.ic_printer_image
+                R.drawable.ic_priner_text
             }
             2 -> {
                 R.drawable.ic_printer_extension

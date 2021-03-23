@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.har.habitforyou.R
 import com.har.habitforyou.databinding.FragmentPrinterBinding
@@ -21,19 +20,18 @@ class PrinterFragment : Fragment() {
 
     private var _binding: FragmentPrinterBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("FragmentPrinterBinding is Null")
-    private lateinit var viewModel: PrinterFragmentViewModel
+    private val viewModel: PrinterFragmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_printer, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PrinterFragmentViewModel::class.java)
         binding.viewModel = viewModel
 
         val printerPagerAdapter = PrinterPagerAdapter(this)
