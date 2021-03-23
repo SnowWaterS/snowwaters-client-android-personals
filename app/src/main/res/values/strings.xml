@@ -43,6 +43,9 @@
     <string name="printer_title_extension" translatable="false">Extension</string>
     <string name="printer_title_settings" translatable="false">Settings</string>
 
+    <!-- Image -->
+    <string name="print_image_load_img_btn_title" translatable="false">Load Img</string>
+
     <!-- Printer Settings -->
     <!-- Preference Categories -->
     <string name="printer_bluetooth_device_header" translatable="false">Bluetooth Device</string>
