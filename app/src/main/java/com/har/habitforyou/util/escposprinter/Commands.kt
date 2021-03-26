@@ -1,6 +1,7 @@
-package com.har.habitforyou.util.escposprinter
+package com.nowbusking.nowwaiting.nowwaiting.printer.escprinter
 
-class Commands {
+
+object EposCommands {
 
     // Printer hardware
     val HW_INIT = byteArrayOf(0x1b, 0x40) // Clear data in buffer and reset modes
@@ -23,7 +24,12 @@ class Commands {
     val LINE_SPACE_30 = byteArrayOf(0x1b, 0x33, 30) // Set the line spacing at 30
 
     //Image
-    val SELECT_BIT_IMAGE_MODE = byteArrayOf(0x1B, 0x2A, 33)
+    val SELECT_BIT_IMAGE_MODE = byteArrayOf(0x1B, 0x2A, 0x33)
+    val SELECT_GRAY_BIT_IMAGE_MODE = byteArrayOf(0x1B, 0x2A, 0x01)
+    val SELECT_RASTER_IMAGE_MODE = byteArrayOf(0x1D, 0x76, 0x30, 0x00)
+
+    val UNDIRECTIONAL_OFF = byteArrayOf(0x1b, 0x55, 0x00)
+    val UNDIRECTIONAL_ON = byteArrayOf(0x1b, 0x55, 0x01)
 
     // Cash Drawer
     val CD_KICK_2 = byteArrayOf(0x1b, 0x70, 0x00) // Sends a pulse to pin 2 []
@@ -79,6 +85,7 @@ class Commands {
     val CP_ISO8859_15 = byteArrayOf(0x44)
     val CP_CP856 = byteArrayOf(0x47)
     val CP_CP874 = byteArrayOf(0x47)
+    val CP_CP949 = byteArrayOf(0x63)
 
     // Text format
     val TXT_NORMAL = byteArrayOf(0x1b, 0x21, 0x00) // Normal text
@@ -90,8 +97,8 @@ class Commands {
     val TXT_UNDERL2_ON = byteArrayOf(0x1b, 0x2d, 0x02) // Underline font 2-dot ON
     val TXT_BOLD_OFF = byteArrayOf(0x1b, 0x45, 0x00) // Bold font OFF
     val TXT_BOLD_ON = byteArrayOf(0x1b, 0x45, 0x01) // Bold font ON
-    val TXT_FONT_A = byteArrayOf(0x1b, 0x4d, 0x48) // Font type A
-    val TXT_FONT_B = byteArrayOf(0x1b, 0x4d, 0x01) // Font type B
+    val TXT_FONT_A = byteArrayOf(0x1b, 0x4d, 0x00) // Font type A
+    val TXT_FONT_B = byteArrayOf(0x1b, 0x4d, 0x01) // Font type B. It is not supported in ‘2-Byte printer’. (Korean, Chinese, Japanese and other 2-Byte printers)
     val TXT_ALIGN_LT = byteArrayOf(0x1b, 0x61, 0x00) // Left justification
     val TXT_ALIGN_CT = byteArrayOf(0x1b, 0x61, 0x01) // Centering
     val TXT_ALIGN_RT = byteArrayOf(0x1b, 0x61, 0x02) // Right justification
@@ -99,6 +106,16 @@ class Commands {
     val TXT_INVERT_OFF = byteArrayOf(0x1d, 0x42, 0x00) // Inverted color text
     val TXT_COLOR_BLACK = byteArrayOf(0x1b, 0x72, 0x00) // Default Color
     val TXT_COLOR_RED = byteArrayOf(0x1b, 0x72, 0x01) // Alternative Color (Usually Red)
+    val TXT_SIZE_SET = byteArrayOf(0x1d, 0x21) // Normal text
+
+    // width = 0-7, height = 0-7
+    fun getTextSize(width: Int, height: Int): ByteArray {
+        val hexWidth = width * 16
+        val hexHeight = height
+        val totalSize = hexWidth + hexHeight
+        val sizeByteArray = TXT_SIZE_SET + byteArrayOf(totalSize.toByte())
+        return sizeByteArray
+    }
 
     // Char code table
     val CHARCODE_PC437 = byteArrayOf(0x1b, 0x74, 0x00) // USA){ Standard Europe
@@ -138,6 +155,15 @@ class Commands {
     val BARCODE_CODE39 = byteArrayOf(0x1d, 0x6b, 0x04) // Barcode type CODE39
     val BARCODE_ITF = byteArrayOf(0x1d, 0x6b, 0x05) // Barcode type ITF
     val BARCODE_NW7 = byteArrayOf(0x1d, 0x6b, 0x06) // Barcode type NW7
+
+    // Qrcode format
+    val QRCODDE_MODEL = byteArrayOf(0x1D, 0x28, 0x6B, 0x04, 0x00, 0x31, 0x41, 0x32, 0x00)
+    val QRCODDE_SIZE = byteArrayOf(0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x43, 0x07)
+    val QRCODDE_ERROR = byteArrayOf(0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x45, 0x30)
+    val QRCODDE_STORE_DATA_FIRST = byteArrayOf(0x1D, 0x28, 0x6B) // QRCODE DATA = QRCODDE_STORE_DATA_FIRST + LENGTHS(width/256, height/256) + QRCODDE_STORE_DATA_LAST
+    val QRCODDE_STORE_DATA_LAST = byteArrayOf(0x31, 0x50, 0x30)
+    val QRCODDE_PRINT = byteArrayOf(0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x51, 0x30)
+    val QRCODDE_TRANSMIT = byteArrayOf(0x1d, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x52, 0x30)
 
 
     // Printing Density

@@ -15,18 +15,16 @@ data class PrintFormat(
     var bitmap: Bitmap? = null
     var bitmapUrl: String? = null
     var feedCount: Int = 6
-    var lineString: String = "-"
+    var lineChar: String = "-"
 
     companion object {
         const val TYPE_TEXT = 0
         const val TYPE_BITMAP = 1
         const val TYPE_QRCODE = 2
         const val TYPE_BARCODE = 3
-        const val TYPE_DASHLINE = 5
-        const val TYPE_DOUBLELINE = 6
-        const val TYPE_SOLIDLINE = 7
-        const val TYPE_LINEFEED = 8
-        const val TYPE_CUTPAPER = 9
+        const val TYPE_LINE = 5
+        const val TYPE_LINEFEED = 6
+        const val TYPE_CUTPAPER = 7
         const val ALIGNMENT_LEFT = 0
         const val ALIGNMENT_CENTER = 1
         const val ALIGNMENT_RIGHT = 2
@@ -88,10 +86,10 @@ data class PrintFormat(
         }
 
         @JvmStatic
-        fun createLine(lineType: Int, lineString: String = "-"): PrintFormat {
-            val printFormat = PrintFormat(lineType)
-            printFormat.lineString = lineString
-            return PrintFormat(lineType)
+        fun createLine(lineChar: String = "-"): PrintFormat {
+            val printFormat = PrintFormat(TYPE_LINE)
+            printFormat.lineChar = lineChar
+            return printFormat
 
         }
 
