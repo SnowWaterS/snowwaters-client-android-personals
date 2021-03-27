@@ -45,7 +45,7 @@
             android:layout_marginTop="20dp"
             android:onClick="@{view -> viewModel.onRemovePhotoBtnClicked(view)}"
             android:text="삭제하기"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_load_image"
             app:layout_constraintStart_toEndOf="@id/btn_load_photo"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,14 +53,13 @@
             android:id="@+id/iv_load_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_margin="20dp"
             android:background="@color/color_no_image"
             android:scrollbars="none"
-            app:layout_constraintDimensionRatio="H,1:1"
-            app:layout_constraintEnd_toEndOf="@id/btn_remove_photo"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/btn_take_photo"
-            app:layout_constraintTop_toBottomOf="@id/btn_take_photo"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:tint="@android:color/darker_gray" />
 
         <com.google.android.material.button.MaterialButton
@@ -70,9 +69,9 @@
             android:layout_marginTop="20dp"
             android:text="프린트 하기"
             android:onClick="@{view -> viewModel.onPrintPhotoBtnClicked(view)}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_load_image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_load_image" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_load_image" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

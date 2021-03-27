@@ -33,7 +33,6 @@ class PrinterImageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
-        binding.tvHelloTest.text = "크크크"
     }
 
 }
