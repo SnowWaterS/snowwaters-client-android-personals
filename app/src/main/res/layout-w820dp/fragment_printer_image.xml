@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.har.habitforyou.ui.printer.tab.image.PrinterImageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/printer_base_padding">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_take_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="사진 찍기"
+            android:onClick="@{view -> viewModel.onTakePhotoBtnClicked(view)}"
+            app:layout_constraintEnd_toStartOf="@id/btn_load_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_load_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="이미지 불러오기"
+            android:onClick="@{view -> viewModel.onLoadPhotoBtnClicked(view)}"
+            app:layout_constraintEnd_toStartOf="@id/btn_remove_photo"
+            app:layout_constraintStart_toEndOf="@id/btn_take_photo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_remove_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:onClick="@{view -> viewModel.onRemovePhotoBtnClicked(view)}"
+            android:text="삭제하기"
+            app:layout_constraintEnd_toStartOf="@id/iv_load_image"
+            app:layout_constraintStart_toEndOf="@id/btn_load_photo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_load_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:background="@color/color_no_image"
+            android:scrollbars="none"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@android:color/darker_gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_print_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="프린트 하기"
+            android:onClick="@{view -> viewModel.onPrintPhotoBtnClicked(view)}"
+            app:layout_constraintEnd_toStartOf="@id/iv_load_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_load_image" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
