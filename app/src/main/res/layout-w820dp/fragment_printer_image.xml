@@ -16,7 +16,7 @@
         android:padding="@dimen/printer_base_padding">
 
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_take_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,23 +27,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_load_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="이미지 불러오기"
-            android:onClick="@{view -> viewModel.onLoadPhotoBtnClicked(view)}"
             app:layout_constraintEnd_toStartOf="@id/btn_remove_photo"
             app:layout_constraintStart_toEndOf="@id/btn_take_photo"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_remove_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:onClick="@{view -> viewModel.onRemovePhotoBtnClicked(view)}"
             android:text="삭제하기"
             app:layout_constraintEnd_toStartOf="@id/iv_load_image"
             app:layout_constraintStart_toEndOf="@id/btn_load_photo"
@@ -59,10 +57,9 @@
             app:layout_constraintDimensionRatio="W,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@android:color/darker_gray" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_print_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
