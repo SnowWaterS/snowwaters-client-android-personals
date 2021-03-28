@@ -1,13 +1,15 @@
 package com.har.habitforyou.ui.printer.tab.image
 
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.har.habitforyou.R
 import com.har.habitforyou.databinding.FragmentPrinterImageBinding
 
@@ -29,10 +31,23 @@ class PrinterImageFragment : Fragment() {
         return binding.root
     }
 
+    private val loadedPhoto = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        Log.i("loadPhoto", "uri? $it")
+        binding.ivLoadImage.setImageURI(it)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
+
+        binding.btnLoadPhoto.setOnClickListener {
+            loadedPhoto.launch("image/*")
+        }
+
+        binding.btnRemovePhoto.setOnClickListener {
+            binding.ivLoadImage.setImageURI(null)
+        }
     }
 
 }
