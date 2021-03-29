@@ -56,7 +56,7 @@ class PrinterImageFragment : Fragment() {
         }
 
         binding.btnRemovePhoto.setOnClickListener {
-            binding.ivLoadImage.setImageResource(0)
+            binding.ivLoadImage.setImageDrawable(null)
         }
     }
 
