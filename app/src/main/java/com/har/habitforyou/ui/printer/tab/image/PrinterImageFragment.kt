@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.launch
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -31,6 +32,11 @@ class PrinterImageFragment : Fragment() {
         return binding.root
     }
 
+    private val takenPhoto = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
+        Log.i("takenPhoto", "Show Preivew")
+        binding.ivLoadImage.setImageBitmap(it)
+    }
+
     private val loadedPhoto = registerForActivityResult(ActivityResultContracts.GetContent()) {
         Log.i("loadPhoto", "uri? $it")
         binding.ivLoadImage.setImageURI(it)
@@ -41,12 +47,16 @@ class PrinterImageFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        binding.btnTakePhoto.setOnClickListener {
+            takenPhoto.launch()
+        }
+
         binding.btnLoadPhoto.setOnClickListener {
             loadedPhoto.launch("image/*")
         }
 
         binding.btnRemovePhoto.setOnClickListener {
-            binding.ivLoadImage.setImageURI(null)
+            binding.ivLoadImage.setImageResource(0)
         }
     }
 
