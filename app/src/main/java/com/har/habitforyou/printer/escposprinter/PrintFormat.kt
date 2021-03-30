@@ -1,4 +1,4 @@
-package com.har.habitforyou.util.escposprinter
+package com.har.habitforyou.printer.escposprinter
 
 import android.graphics.Bitmap
 

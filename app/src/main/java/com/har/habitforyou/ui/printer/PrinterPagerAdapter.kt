@@ -8,7 +8,7 @@ import com.har.habitforyou.ui.printer.tab.image.PrinterImageFragment
 import com.har.habitforyou.ui.printer.tab.settings.PrinterSettingsFragment
 import com.har.habitforyou.ui.printer.tab.text.PrinterTextFragment
 
-class PrinterPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
+class PrinterPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int {
         return 4
@@ -17,16 +17,16 @@ class PrinterPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
-                PrinterImageFragment()
+                PrinterSettingsFragment()
             }
             1 -> {
-                PrinterTextFragment()
+                PrinterImageFragment()
             }
             2 -> {
-                PrinterExtensionFragment()
+                PrinterTextFragment()
             }
             else -> {
-                PrinterSettingsFragment()
+                PrinterExtensionFragment()
             }
         }
     }
@@ -34,16 +34,16 @@ class PrinterPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     fun getTitleResId(position: Int): Int {
         return when (position) {
             0 -> {
-                R.string.printer_title_image
+                R.string.printer_title_settings
             }
             1 -> {
-                R.string.printer_title_text
+                R.string.printer_title_image
             }
             2 -> {
-                R.string.printer_title_extension
+                R.string.printer_title_text
             }
             else -> {
-                R.string.printer_title_settings
+                R.string.printer_title_extension
             }
         }
     }
@@ -51,16 +51,17 @@ class PrinterPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     fun getIconResId(position: Int): Int {
         return when (position) {
             0 -> {
-                R.drawable.ic_printer_image
+                R.drawable.ic_printer_settings
+
             }
             1 -> {
-                R.drawable.ic_priner_text
+                R.drawable.ic_printer_image
             }
             2 -> {
-                R.drawable.ic_printer_extension
+                R.drawable.ic_priner_text
             }
             else -> {
-                R.drawable.ic_printer_settings
+                R.drawable.ic_printer_extension
             }
         }
     }
