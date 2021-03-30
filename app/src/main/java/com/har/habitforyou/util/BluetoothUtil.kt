@@ -11,7 +11,7 @@ import android.util.Log
 import android.widget.Toast
 import com.har.habitforyou.`object`.Result
 import com.har.habitforyou.`object`.ResultCallback
-import com.har.habitforyou.constant.BluetoothUUIDConstant
+import com.har.habitforyou.bluetooth.BluetoothUUIDConstant
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream

@@ -1,4 +1,4 @@
-package com.har.habitforyou.constant
+package com.har.habitforyou.bluetooth
 
 object BluetoothUUIDConstant {
 

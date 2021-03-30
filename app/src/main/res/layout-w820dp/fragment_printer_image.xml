@@ -64,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="프린트 하기"
-            android:onClick="@{view -> viewModel.onPrintPhotoBtnClicked(view)}"
             app:layout_constraintEnd_toStartOf="@id/iv_load_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/iv_load_image" />
