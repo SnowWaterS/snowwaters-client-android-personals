@@ -108,7 +108,7 @@ class MainSplashActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    suspend fun animation() {
+    private fun animation() {
         val iv = findViewById<ImageView>(R.id.iv_splash_logo)
         val animation = AnimationUtils.loadAnimation(this, R.anim.anim_scale)
         iv.startAnimation(animation)
