@@ -56,6 +56,7 @@ class BluetoothUtil {
                     val device: BluetoothDevice? =
                         intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
                     device?.let {
+                        Log.i("bluetoothDeviceScan", "${device.name} - $device")
                         val deviceName = it.name
                         val deviceHardwareAddress = it.address
                         scannedBluetoothSet.add(Pair(deviceName, deviceHardwareAddress))
