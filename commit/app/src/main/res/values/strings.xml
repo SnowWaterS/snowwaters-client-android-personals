@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">OneCommitAday</string>
+
+    <string name="text_summary">%s It\'s been %d days since the Jandi has grown well.</string>
+    <string name="text_summary_zero">%s I haven\'t planted Jandi yet. </string>
+
+    <string name="text_daily_description">%s, # of contributions: %d</string>
+
+    <string name="text_greeting">👋 Hello, @%s!</string>
+    <string name="text_refresh">⏳ Refresh</string>
+    <string name="text_change_nickname">📄 Change Nickname</string>
+    <string name="text_settings">⚙️ Settings</string>
+    <string name="text_exit">🚪 Exit the app</string>
+
+    <string name="type_appearance_jandi">jandi</string>
+    <string name="type_appearance_flower">flower</string>
+
+</resources>

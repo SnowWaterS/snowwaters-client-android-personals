@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/settings_title" />
+
+    <CheckBoxPreference
+        android:icon="@drawable/ic_change_circle"
+        android:key="@string/pref_key_keep_nickname"
+        android:title="@string/settings_keep_nickname"
+        app:allowDividerBelow="true" />
+
+    <ListPreference
+        android:defaultValue="jandi"
+        android:entries="@array/type_entries"
+        android:entryValues="@array/type_values"
+        android:icon="@drawable/ic_type"
+        android:key="@string/pref_key_appearance_type"
+        android:title="@string/settings_type_appearance"
+        app:useSimpleSummaryProvider="true" />
+
+    <Preference
+        android:enabled="false"
+        android:icon="@drawable/ic_column"
+        android:key="@string/pref_key_flower_column"
+        android:title="@string/settings_flower_column"
+        app:allowDividerBelow="true"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        android:defaultValue="system"
+        android:entries="@array/color_entries"
+        android:entryValues="@array/color_values"
+        android:icon="@drawable/ic_appearance"
+        android:key="@string/pref_key_color_appearance"
+        android:title="@string/settings_color_appearance"
+        app:allowDividerBelow="true"
+        app:useSimpleSummaryProvider="true" />
+
+    <EditTextPreference
+        android:icon="@drawable/ic_brush"
+        android:key="@string/pref_key_text_font"
+        android:title="@string/settings_primary_color"
+        app:allowDividerBelow="true"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        android:defaultValue="system"
+        android:entries="@array/font_entries"
+        android:entryValues="@array/font_values"
+        android:icon="@drawable/ic_font"
+        android:key="@string/pref_key_text_font"
+        android:title="@string/settings_text_font"
+        app:allowDividerBelow="true"
+        app:useSimpleSummaryProvider="true" />
+
+
+</PreferenceScreen>

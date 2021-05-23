@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/commitHistoryFragment">
+
+    <fragment
+        android:id="@+id/commitHistoryFragment"
+        android:name="com.har.onecommitaday.ui.main.CommitHistoryFragment"
+        android:label="CommitHistoryFragment"
+        tools:layout="@layout/commit_history_fragment">
+
+        <action android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/settingFragment"
+            />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.har.onecommitaday.ui.main.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/setting_fragment">
+    </fragment>
+
+</navigation>

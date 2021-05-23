@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.har.onecommitaday.ui.main.CommitHistoryViewModel.ViewState" />
+
+        <variable
+            name="viewModel"
+            type="com.har.onecommitaday.ui.main.CommitHistoryViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lay_commit_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorOnPrimary">
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="50dp" />
+
+            <TextView
+                android:id="@+id/tv_commit_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@{viewModel.summaryData.consecutiveDays == 0 ? String.format(@string/text_summary_zero, viewModel.summaryData.emoji) : String.format(@string/text_summary, viewModel.summaryData.emoji, viewModel.summaryData.consecutiveDays)}"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="테스트" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_commit_history"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:overScrollMode="never"
+                app:contributions="@{viewModel.contributions}"
+                app:layout_constraintTop_toBottomOf="@id/tv_commit_summary"
+                tools:itemCount="14"
+                tools:listitem="@layout/jandi_commit_history_item" />
+
+            <TextView
+                android:id="@+id/tv_commit_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{String.format(@string/text_daily_description, viewModel.selectedCommitHistory.date, viewModel.selectedCommitHistory.count)}"
+                android:textAlignment="center"
+                android:visibleIf="@{viewModel.appearanceType.equals(@string/type_appearance_flower)}"
+                app:layout_constraintTop_toBottomOf="@id/rv_commit_history" />
+
+
+            <Button
+                android:id="@+id/btn_capture"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="캡쳐하기"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+                app:layout_constraintEnd_toStartOf="@id/btn_share"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_share"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_capture" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/lay_flash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:visibility="gone" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lay_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorOnPrimary"
+            android:visibleIf="@{viewModel.state instanceof ViewState.LOADING}"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="데이터를 받아오고 있습니다"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toTopOf="@id/pi_loading" />
+
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/pi_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#aa000000"
+            android:visibleIf="@{false}"
+            tools:visibility="gone" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lay_bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_round_lightgray"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="50dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@{String.format(@string/text_greeting, viewModel.githubNickName)}"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_expand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_expand_up"
+                android:visibleIf="@{!viewModel.isExpanded}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_nickname"
+                app:layout_constraintEnd_toEndOf="@id/tv_nickname"
+                app:layout_constraintTop_toTopOf="@id/tv_nickname"
+                app:tint="@color/black" />
+
+            <ImageView
+                android:id="@+id/iv_less"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_expand_down"
+                android:visibleIf="@{viewModel.isExpanded}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_nickname"
+                app:layout_constraintEnd_toEndOf="@id/tv_nickname"
+                app:layout_constraintTop_toTopOf="@id/tv_nickname"
+                app:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="@{view -> viewModel.onBtnRefreshClicked(view)}"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@string/text_refresh"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_nickname" />
+
+            <TextView
+                android:id="@+id/tv_change_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@string/text_change_nickname"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_refresh" />
+
+            <TextView
+                android:id="@+id/tv_settings"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="@{view -> viewModel.onBtnSettingsClicked(view)}"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@string/text_settings"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_change_nickname" />
+
+            <TextView
+                android:id="@+id/tv_exit_app"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@string/text_exit"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_settings" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorOnPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="20dp"
+            android:visibleIf="@{viewModel.state instanceof ViewState.INIT}"
+            tools:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_lay_account"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="Github Account"
+                app:layout_constraintBottom_toTopOf="@id/btn_account_confirm"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ti_et_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1"
+                    android:text="@={viewModel.githubNickName}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_account_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/design_default_color_primary"
+                android:text="Enter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
