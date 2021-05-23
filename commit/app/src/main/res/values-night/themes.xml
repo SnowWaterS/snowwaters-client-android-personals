@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.OneCommitAday" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- tint color. -->
+        <item name="iconTint">@color/white</item>
+        <item name="android:iconTint">@color/white</item>
+        <item name="android:tint">@color/white</item>
+        <item name="tint">@color/white</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Theme.OneCommitAday.Systme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- tint color. -->
+        <item name="iconTint">@color/white</item>
+        <item name="android:iconTint">@color/white</item>
+        <item name="android:tint">@color/white</item>
+        <item name="tint">@color/white</item>
+    </style>
+
+    <style name="Theme.OneCommitAday.CookieRun" parent="Theme.OneCommitAday.Systme">
+        <item name="fontFamily">@font/font_cookierun</item>
+        <item name="android:fontFamily">@font/font_cookierun</item>
+    </style>
+
+    <style name="Theme.OneCommitAday.Funnystory" parent="Theme.OneCommitAday.Systme">
+        <item name="fontFamily">@font/font_funnystory</item>
+        <item name="android:fontFamily">@font/font_funnystory</item>
+    </style>
+
+    <style name="Theme.OneCommitAday.Inklipquid" parent="Theme.OneCommitAday.Systme">
+        <item name="fontFamily">@font/font_inklipquid</item>
+        <item name="android:fontFamily">@font/font_inklipquid</item>
+    </style>
+
+    <style name="Theme.OneCommitAday.Yeonji" parent="Theme.OneCommitAday.Systme">
+        <item name="fontFamily">@font/font_yeonji</item>
+        <item name="android:fontFamily">@font/font_yeonji</item>
+    </style>
+</resources>

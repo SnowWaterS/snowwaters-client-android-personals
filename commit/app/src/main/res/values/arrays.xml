@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Type Appearance Preference -->
+    <string-array name="type_entries">
+        <item>잔디 스타일</item>
+        <item>꽃밭 스타일</item>
+    </string-array>
+
+    <string-array name="type_values">
+        <item id="jandi">jandi</item>
+        <item id="flower">flower</item>
+    </string-array>
+
+    <!-- Font Preference -->
+    <string-array name="font_entries">
+        <item>나눔손글씨 연지체</item>
+        <item>잉크립퀴드체</item>
+        <item>즐거운이야기체</item>
+        <item>쿠키런체</item>
+        <item>시스템 폰트</item>
+    </string-array>
+
+    <string-array name="font_values">
+        <item>yeonji</item>
+        <item>inklipquid</item>
+        <item>funnystory</item>
+        <item>cookierun</item>
+        <item>system</item>
+    </string-array>
+
+    <!-- Colour Appearance Preference -->
+    <string-array name="color_entries">
+        <item>Bright Mode</item>
+        <item>Dark Mode</item>
+        <item>System</item>
+    </string-array>
+
+    <string-array name="color_values">
+        <item>bright</item>
+        <item>dark</item>
+        <item>system</item>
+    </string-array>
+</resources>

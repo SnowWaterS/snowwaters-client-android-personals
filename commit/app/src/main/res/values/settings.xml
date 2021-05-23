@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- preference key -->
+    <string name="pref_key_github_nickname">pref_key_github_nickname</string>
+
+    <string name="pref_key_keep_nickname">pref_key_keep_nickname</string>
+    <string name="pref_key_appearance_type">pref_key_appearance_type</string>
+    <string name="pref_key_flower_column">pref_key_flower_column</string>
+    <string name="pref_key_color_appearance">pref_key_color_appearance</string>
+    <string name="pref_key_primary_color">pref_key_primary_color</string>
+    <string name="pref_key_text_font">pref_key_text_font</string>
+
+    <!-- preference string -->
+    <string name="settings_value_github_nickname">Github Nickname</string>
+
+    <!-- preference string in Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_keep_nickname">Keep Nickname</string>
+    <string name="settings_type_appearance">Appearance Type</string>
+    <string name="settings_flower_column">No. of Columns</string>
+    <string name="settings_color_appearance">Color Appearance</string>
+    <string name="settings_primary_color">Primary Color</string>
+    <string name="settings_text_font">Text Font</string>
+</resources>
