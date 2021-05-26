@@ -1,5 +1,6 @@
 package com.har.onecommitaday.ui.main
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
+import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
@@ -71,8 +73,10 @@ class CommitHistoryFragment : Fragment() {
 
         if (typeAppearacne == "flower") {
             val flowerColmn = SettingManager.getNoFlowerColumn(context)
-            val flowerCommitHistoryAdapter = FlowerBedCommitHistoryAdapter {
-                position, commitHistory ->  viewModel.setSelectedCommitHistory(commitHistory)}
+            val flowerCommitHistoryAdapter =
+                FlowerBedCommitHistoryAdapter { position, commitHistory ->
+                    viewModel.setSelectedCommitHistory(commitHistory)
+                }
             binding.rvCommitHistory.adapter = flowerCommitHistoryAdapter
             binding.rvCommitHistory.layoutManager = GridLayoutManager(context, flowerColmn)
         }
@@ -237,6 +241,30 @@ class CommitHistoryFragment : Fragment() {
             bitmap.compress(Bitmap.CompressFormat.PNG, quality, outputStream)
             outputStream.flush()
             outputStream.close()
+
+            // Save image in Gallery
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                val contentResolver = context?.contentResolver ?: return
+                val contentValues = ContentValues()
+                contentValues.put(
+                    MediaStore.MediaColumns.DISPLAY_NAME,
+                    "canvas_screenshot_$now.png"
+                )
+                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+                contentValues.put(
+                    MediaStore.MediaColumns.RELATIVE_PATH,
+                    "DCIM/" + "OneCommitOneDay"
+                )
+
+                val imageUri = contentResolver.insert(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    contentValues
+                ) ?: return
+                val pictureOutputStream = contentResolver.openOutputStream(imageUri) ?: return
+                bitmap.compress(Bitmap.CompressFormat.PNG, quality, pictureOutputStream)
+                pictureOutputStream.flush()
+                pictureOutputStream.close()
+            }
         } catch (e: Throwable) {
             e.printStackTrace()
         }
