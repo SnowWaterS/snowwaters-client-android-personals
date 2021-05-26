@@ -158,14 +158,7 @@ class CommitHistoryFragment : Fragment() {
         }
 
         binding.btnShare.setOnClickListener {
-            val sendIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "This is test")
-                type = "text/plain"
-            }
-
-            val shareIntent = Intent.createChooser(sendIntent, null)
-            startActivity(shareIntent)
+            shareScreenShotUsingCanvas()
         }
 
         binding.btnAccountConfirm.setOnClickListener { view ->
@@ -264,6 +257,60 @@ class CommitHistoryFragment : Fragment() {
                 bitmap.compress(Bitmap.CompressFormat.PNG, quality, pictureOutputStream)
                 pictureOutputStream.flush()
                 pictureOutputStream.close()
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun shareScreenShotUsingCanvas() {
+
+        Log.i("fileText", "shareScreenShotUsingCanvas")
+
+        val date = Date()
+        val now = DateFormat.format("yyyy-MM-dd_hh:mm:ss", date)
+
+        try {
+            val captureView = binding.layCommitHistory
+            val bitmap =
+                    Bitmap.createBitmap(captureView.width, captureView.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            captureView.draw(canvas)
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                val contentResolver = context?.contentResolver ?: return
+                val contentValues = ContentValues()
+                contentValues.put(
+                        MediaStore.MediaColumns.DISPLAY_NAME,
+                        "canvas_screenshot_$now.png"
+                )
+                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+                contentValues.put(
+                        MediaStore.MediaColumns.RELATIVE_PATH,
+                        "DCIM/" + "OneCommitOneDay"
+                )
+
+                val imageUri = contentResolver.insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        contentValues
+                ) ?: return
+                val pictureOutputStream = contentResolver.openOutputStream(imageUri) ?: return
+                val quality = 100
+
+                bitmap.compress(Bitmap.CompressFormat.PNG, quality, pictureOutputStream)
+                pictureOutputStream.flush()
+                pictureOutputStream.close()
+
+
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_STREAM, imageUri)
+                    type = "image/png"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, "capture Iamge")
+                startActivity(shareIntent)
+
             }
         } catch (e: Throwable) {
             e.printStackTrace()
