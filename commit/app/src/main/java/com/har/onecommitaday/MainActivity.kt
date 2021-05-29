@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             "inklipquid" ->  setTheme(R.style.Theme_OneCommitAday_Inklipquid)
             "funnystory" ->  setTheme(R.style.Theme_OneCommitAday_Funnystory)
             "cookierun" ->  setTheme(R.style.Theme_OneCommitAday_CookieRun)
-            else ->  setTheme(R.style.Theme_OneCommitAday_Systme)
+            else ->  setTheme(R.style.Theme_OneCommitAday_System)
         }
 
         when (sharedPreferences.getString(getString(R.string.pref_key_color_appearance), "system")) {
