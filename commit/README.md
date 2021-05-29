@@ -15,3 +15,7 @@ The Android Application for Github Contribution Check Everyday.
 ## Mode
 * Jandi Mode
 * Flower bed Mode
+
+
+---
+Last Updated 29May2021
