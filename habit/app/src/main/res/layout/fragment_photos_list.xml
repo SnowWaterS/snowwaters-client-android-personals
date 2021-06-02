@@ -6,9 +6,6 @@
     android:name="com.har.habitforyou.ui.photos.PhotosFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:background="@color/colorPrimary"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.photos.PhotosFragment"
     tools:listitem="@layout/item_photo" />
