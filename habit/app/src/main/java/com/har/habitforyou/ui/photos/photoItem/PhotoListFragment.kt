@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.photos
+package com.har.habitforyou.ui.photos.photoItem
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.har.habitforyou.R
+import com.har.habitforyou.ui.photos.PhotosFragment
 import com.har.habitforyou.ui.photos.dummy.DummyContent
-import com.har.habitforyou.ui.photos.photoItem.PhotoItemRecyclerViewAdapter
 
 /**
  * A fragment representing a list of Items.
@@ -40,7 +40,7 @@ class PhotoListFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = PhotoItemRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = PhotoItemRecyclerViewAdapter(DummyContent.ITEMS, columnCount)
             }
         }
         return view

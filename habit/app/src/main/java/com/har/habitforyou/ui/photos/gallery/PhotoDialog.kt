@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.photos
+package com.har.habitforyou.ui.photos.gallery
 
 import com.har.habitforyou.R
 import com.har.habitforyou.base.BaseBindingDialog

@@ -1,14 +1,13 @@
 package com.har.habitforyou.ui.photos
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.google.android.material.internal.ContextUtils
 import com.har.habitforyou.R
+import com.har.habitforyou.ui.photos.photoItem.PhotoListFragment
 import com.har.habitforyou.util.ContextUtil
 
 
