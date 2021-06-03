@@ -17,7 +17,7 @@ import com.har.habitforyou.ui.photos.dummy.DummyContent
  */
 class PhotoListFragment : Fragment() {
 
-    private var columnCount = 3
+    private var columnCount = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
