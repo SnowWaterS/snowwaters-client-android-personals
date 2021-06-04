@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.har.habitforyou.R
 import com.har.habitforyou.ui.photos.PhotosFragment
-import com.har.habitforyou.ui.photos.dummy.DummyContent
+import com.har.habitforyou.ui.photos.model.DummyContent
 
 /**
  * A fragment representing a list of Items.

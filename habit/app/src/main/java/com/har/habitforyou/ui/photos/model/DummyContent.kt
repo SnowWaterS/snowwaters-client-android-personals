@@ -1,4 +1,4 @@
-package com.har.habitforyou.ui.photos.dummy
+package com.har.habitforyou.ui.photos.model
 
 import java.util.ArrayList
 import java.util.HashMap
