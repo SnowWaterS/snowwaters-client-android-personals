@@ -1,2 +1,5 @@
+include ':feature:habbittracker'
+include ':feature'
+include ':common'
 include ':app'
 rootProject.name = "HabitForYou"
