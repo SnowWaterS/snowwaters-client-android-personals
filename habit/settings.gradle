@@ -1,4 +1,4 @@
-include ':feature:habbittracker'
+include ':feature:habittracker'
 include ':feature'
 include ':common'
 include ':app'

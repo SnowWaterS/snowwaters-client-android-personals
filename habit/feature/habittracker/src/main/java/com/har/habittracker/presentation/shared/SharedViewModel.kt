@@ -1,4 +1,4 @@
-package com.har.habbittracker.presentation.shared
+package com.har.habittracker.presentation.shared
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

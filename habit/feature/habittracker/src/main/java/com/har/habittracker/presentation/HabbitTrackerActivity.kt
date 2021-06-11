@@ -1,9 +1,9 @@
-package com.har.habbittracker.presentation
+package com.har.habittracker.presentation
 
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.har.habbittracker.databinding.ActivityHabbitTrackerBinding
-import com.har.habbittracker.presentation.shared.SharedViewModel
+import com.har.habittracker.databinding.ActivityHabbitTrackerBinding
+import com.har.habittracker.presentation.shared.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

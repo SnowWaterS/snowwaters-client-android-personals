@@ -46,7 +46,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':common')
-    implementation project(':feature:habbittracker')
+    implementation project(':feature:habittracker')
 
     // jetbrain
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
