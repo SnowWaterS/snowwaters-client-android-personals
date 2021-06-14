@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation_habbit_tracker">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_habbit_tracker"
+    app:startDestination="@id/calendarFragment">
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.har.habittracker.presentation.calendar.CalendarFragment"
+        android:label="CalendarFragment"
+        tools:layout="@layout/fragment_calendar">
+        <action
+            android:id="@+id/action_calendarFragment_to_newTaskDialog"
+            app:destination="@id/newTaskDialog" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="com.har.habittracker.presentation.task.TaskListFragment"
+        android:label="TaskListFragment">
+        <action
+            android:id="@+id/action_taskListFragment_to_newTaskDialog"
+            app:destination="@id/newTaskDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/newTaskDialog"
+        android:name="com.har.habittracker.presentation.addition.NewTaskDialog"
+        android:label="NewTaskDialog" />
 
 </navigation>
