@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/taskListFragment"
-        android:name="com.har.habittracker.presentation.task.TaskListFragment"
+        android:name="com.har.habittracker.presentation.list.TaskListFragment"
         android:label="TaskListFragment">
         <action
             android:id="@+id/action_taskListFragment_to_newTaskDialog"
