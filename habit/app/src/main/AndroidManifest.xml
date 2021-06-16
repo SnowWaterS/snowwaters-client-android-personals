@@ -29,14 +29,14 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
-            android:name=".ui.habittracker.HabbitTrackerActivity"
-            android:label="@string/feature_name_habbit_tracker"
-            android:theme="@style/AppTheme.NoActionBar">
-        <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+            android:name="com.har.habittracker.presentation.HabitTrackerActivity"
+            android:label="@string/feature_name_habbit_tracker">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
