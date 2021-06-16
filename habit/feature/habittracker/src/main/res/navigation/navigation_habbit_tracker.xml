@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_calendarFragment_to_newTaskDialog"
             app:destination="@id/newTaskDialog" />
+
+        <action
+            android:id="@+id/action_calendarFragment_to_taskListDialog"
+            app:destination="@id/taskListFragment" />
     </fragment>
 
     <fragment
