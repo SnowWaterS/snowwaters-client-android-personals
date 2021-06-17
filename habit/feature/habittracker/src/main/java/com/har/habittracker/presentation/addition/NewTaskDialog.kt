@@ -17,6 +17,11 @@ class NewTaskDialog: DialogFragment() {
 
     private val viewModel: NewTaskDialogViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NO_TITLE, R.style.BaseDialogTheme)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.dialog_new_task, container, false)
         binding.viewModel = viewModel
