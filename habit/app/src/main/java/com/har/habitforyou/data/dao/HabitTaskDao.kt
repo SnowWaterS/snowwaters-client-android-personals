@@ -1,7 +1,7 @@
 package com.har.habitforyou.data.dao
 
 import androidx.room.*
-import com.har.habitforyou.data.entity.HabitTask
+import com.har.habittracker.domain.model.HabitTask
 
 @Dao
 interface HabitTaskDao {

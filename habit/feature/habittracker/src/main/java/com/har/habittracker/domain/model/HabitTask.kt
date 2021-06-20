@@ -1,10 +1,9 @@
-package com.har.habitforyou.data.entity
+package com.har.habittracker.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = HabitTask.TABLE_NAME,
         indices = [Index(value = ["id"], unique = true)])

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.har.habitforyou.data.dao.HabitTaskDao
-import com.har.habitforyou.data.entity.HabitTask
+import com.har.habittracker.domain.model.HabitTask
 
 @Database(entities = [HabitTask::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
