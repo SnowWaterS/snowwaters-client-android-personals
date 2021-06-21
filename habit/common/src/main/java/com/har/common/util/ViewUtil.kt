@@ -8,6 +8,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import com.har.common.util.OnSingleClickListener
 
 @BindingAdapter("android:visibleIf")
 fun View.setVisibleIf(value: Boolean) {
@@ -43,4 +44,11 @@ fun ImageView.setResourceId(resId: Int) {
     if (resId > 0) {
         setImageResource(resId)
     }
+}
+
+@BindingAdapter("android:onSingleClick")
+fun View.setOnSingleClickListener(listener: View.OnClickListener?) {
+    setOnClickListener(listener?.let {
+        OnSingleClickListener(it)
+    })
 }
