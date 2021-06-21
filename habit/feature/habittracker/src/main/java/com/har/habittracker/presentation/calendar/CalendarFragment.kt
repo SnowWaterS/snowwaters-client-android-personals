@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.har.habittracker.R
 import com.har.habittracker.databinding.FragmentCalendarBinding
+import com.har.habittracker.presentation.addition.NewTaskDialog
 
 class CalendarFragment: Fragment() {
 
@@ -24,6 +25,11 @@ class CalendarFragment: Fragment() {
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_calendar, container, false)
         binding.viewModel = viewModel
+
+        binding.layAddNewTask.setOnClickListener {
+            val dialog = NewTaskDialog()
+            dialog.show(parentFragmentManager, "NewTaskDialog")
+        }
 
         return binding.root
     }
