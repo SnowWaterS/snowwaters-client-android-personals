@@ -1,16 +1,17 @@
 package com.har.habittracker.domain.repository
 
+import androidx.lifecycle.LiveData
 import com.google.android.play.core.tasks.Task
 import com.har.habittracker.domain.model.HabitTask
 
 interface IHabitTaskRepository {
 
-    fun getTask(): HabitTask
+    fun getHabitTask(): LiveData<List<HabitTask>>
 
-    fun addTask(task: HabitTask)
+    fun addHabitTask(task: HabitTask)
 
-    fun updateTask(task: HabitTask)
+    fun updateHabitTask(task: HabitTask)
 
-    fun deleteTask(id: Long)
-    fun deleteTask(task: HabitTask)
+    fun deleteHabitTask(id: Long)
+    fun deleteHabitTask(task: HabitTask)
 }

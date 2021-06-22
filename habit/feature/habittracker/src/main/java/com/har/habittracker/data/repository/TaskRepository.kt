@@ -1,5 +1,6 @@
 package com.har.habittracker.data.repository
 
+import androidx.lifecycle.LiveData
 import com.har.habittracker.data.datasource.TaskMemoryDataSource
 import com.har.habittracker.domain.model.HabitTask
 import com.har.habittracker.domain.repository.IHabitTaskRepository
@@ -8,23 +9,23 @@ class TaskRepository(
     private val taskMemoryDataSource: TaskMemoryDataSource
 ): IHabitTaskRepository {
 
-    override fun getTask(): HabitTask {
+    override fun getHabitTask(): LiveData<List<HabitTask>> {
         TODO("Not yet implemented")
     }
 
-    override fun addTask(task: HabitTask) {
+    override fun addHabitTask(task: HabitTask) {
         TODO("Not yet implemented")
     }
 
-    override fun updateTask(task: HabitTask) {
+    override fun updateHabitTask(task: HabitTask) {
         TODO("Not yet implemented")
     }
 
-    override fun deleteTask(id: Long) {
+    override fun deleteHabitTask(id: Long) {
         TODO("Not yet implemented")
     }
 
-    override fun deleteTask(task: HabitTask) {
+    override fun deleteHabitTask(task: HabitTask) {
         TODO("Not yet implemented")
     }
 
