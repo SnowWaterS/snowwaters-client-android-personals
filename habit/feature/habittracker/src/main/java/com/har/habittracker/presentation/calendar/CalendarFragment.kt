@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.har.habittracker.R
 import com.har.habittracker.databinding.FragmentCalendarBinding
 import com.har.habittracker.presentation.addition.NewTaskDialog
@@ -29,6 +31,10 @@ class CalendarFragment: Fragment() {
         binding.layAddNewTask.setOnClickListener {
             val dialog = NewTaskDialog()
             dialog.show(parentFragmentManager, "NewTaskDialog")
+        }
+
+        binding.btnShowTaskList.setOnClickListener {
+            findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToTaskListDialog())
         }
 
         return binding.root
