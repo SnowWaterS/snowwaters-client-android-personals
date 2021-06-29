@@ -5,9 +5,9 @@ import com.har.habittracker.domain.model.HabitTaskLog
 
 interface IHabitTaskLogRepository {
 
-    fun getHabitTaskLogById(habitTaskId: Long): LiveData<List<HabitTaskLog>>
+    fun getHabitTaskLog(habitTaskId: Long): LiveData<List<HabitTaskLog>>
 
-    fun checkHabitTaskLog(habitTaskId: Long)
+    fun checkHabitTaskDone(habitTaskId: Long)
 
     fun cancelHabitTaskLog(habitTaskId: Long)
 
