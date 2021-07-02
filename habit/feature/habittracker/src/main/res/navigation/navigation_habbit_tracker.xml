@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_calendar">
         <action
             android:id="@+id/action_calendarFragment_to_newTaskDialog"
-            app:destination="@id/newTaskDialog" />
+            app:destination="@id/newTaskDialog"
+            app:popUpTo="@id/calendarFragment"
+            app:popUpToInclusive="true"/>
 
         <action
             android:id="@+id/action_calendarFragment_to_taskListDialog"
@@ -23,6 +25,13 @@
         android:id="@+id/taskListFragment"
         android:name="com.har.habittracker.presentation.list.TaskListFragment"
         android:label="TaskListFragment">
+
+        <action
+            android:id="@+id/action_taskListFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment"
+            app:popUpTo="@id/taskListFragment"
+            app:popUpToInclusive="true"/>
+
         <action
             android:id="@+id/action_taskListFragment_to_newTaskDialog"
             app:destination="@id/newTaskDialog" />
