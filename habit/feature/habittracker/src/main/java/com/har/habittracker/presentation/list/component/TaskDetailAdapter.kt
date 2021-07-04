@@ -1,18 +1,14 @@
 package com.har.habittracker.presentation.list.component
 
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class TaskDetailAdapter: RecyclerView.Adapter<TaskDetailViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskDetailViewHolder {
-        TODO("Not yet implemented")
-    }
-
-    override fun onBindViewHolder(holder: TaskDetailViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
-
+class TaskDetailAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun createFragment(position: Int): Fragment {
         TODO("Not yet implemented")
     }
 }
