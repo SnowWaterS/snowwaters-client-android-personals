@@ -5,7 +5,7 @@ import com.har.habittracker.domain.model.HabitTask
 import com.har.habittracker.domain.repository.IHabitTaskRepository
 
 class GetHabitTaskUseCase(private val repository: IHabitTaskRepository) {
-    suspend fun execute(): LiveData<List<HabitTask>> {
+    fun execute(): LiveData<List<HabitTask>> {
         return repository.getHabitTask()
     }
 }

@@ -1,7 +1,6 @@
 package com.har.habittracker.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.google.android.play.core.tasks.Task
 import com.har.habittracker.domain.model.HabitTask
 
 interface IHabitTaskRepository {

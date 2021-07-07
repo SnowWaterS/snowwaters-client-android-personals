@@ -12,7 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.har.habittracker.R
 import com.har.habittracker.databinding.FragmentCalendarBinding
 import com.har.habittracker.presentation.addition.NewTaskDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CalendarFragment: Fragment() {
 
     private var _binding: FragmentCalendarBinding? = null
