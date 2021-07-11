@@ -2,13 +2,24 @@ package com.har.habittracker.presentation.list.component
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.har.habittracker.domain.model.HabitTask
+import com.har.habittracker.presentation.detail.TaskDetailFrontFragment
 
 class TaskDetailAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
+
+    private val taskDetailList: MutableList<HabitTask> = mutableListOf()
+
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return Integer.MAX_VALUE
     }
 
     override fun createFragment(position: Int): Fragment {
-        TODO("Not yet implemented")
+        return TaskDetailFrontFragment()
+    }
+
+    fun setTaskDetailList(newTaskDetailList: List<HabitTask>) {
+        taskDetailList.clear()
+        taskDetailList.addAll(newTaskDetailList)
+        notifyDataSetChanged()
     }
 }
