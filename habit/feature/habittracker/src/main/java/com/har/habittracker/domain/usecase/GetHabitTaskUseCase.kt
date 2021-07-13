@@ -8,4 +8,8 @@ class GetHabitTaskUseCase(private val repository: IHabitTaskRepository) {
     fun execute(): LiveData<List<HabitTask>> {
         return repository.getHabitTask()
     }
+
+    fun execute(taskId: Int): LiveData<HabitTask> {
+        return repository.getHabitTask(taskId)
+    }
 }

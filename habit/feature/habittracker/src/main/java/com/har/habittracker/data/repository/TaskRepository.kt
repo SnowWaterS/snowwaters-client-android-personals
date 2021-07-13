@@ -13,6 +13,10 @@ class TaskRepository(
         TODO("Not yet implemented")
     }
 
+    override fun getHabitTask(taskId: Int): LiveData<HabitTask> {
+        TODO("Not yet implemented")
+    }
+
     override fun addHabitTask(task: HabitTask) {
         TODO("Not yet implemented")
     }
@@ -21,7 +25,7 @@ class TaskRepository(
         TODO("Not yet implemented")
     }
 
-    override fun deleteHabitTask(id: Long) {
+    override fun deleteHabitTask(id: Int) {
         TODO("Not yet implemented")
     }
 

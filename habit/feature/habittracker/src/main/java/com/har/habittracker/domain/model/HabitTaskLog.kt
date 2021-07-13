@@ -14,7 +14,7 @@ import java.util.*
                 parentColumns = ["id"],
                 onDelete = ForeignKey.CASCADE)])
 data class HabitTaskLog(
-        @ColumnInfo(name = "habit_task_id") val habitTaskId: Long,
+        @ColumnInfo(name = "habit_task_id") val habitTaskId: Int,
         @ColumnInfo(name = "check_date") val checkDate: Date
 ) {
     companion object {

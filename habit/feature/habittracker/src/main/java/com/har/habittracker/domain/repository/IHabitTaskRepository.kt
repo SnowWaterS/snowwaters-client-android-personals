@@ -6,11 +6,13 @@ import com.har.habittracker.domain.model.HabitTask
 interface IHabitTaskRepository {
 
     fun getHabitTask(): LiveData<List<HabitTask>>
+    fun getHabitTask(id: Int): LiveData<HabitTask>
+
 
     fun addHabitTask(task: HabitTask)
 
     fun updateHabitTask(task: HabitTask)
 
-    fun deleteHabitTask(id: Long)
+    fun deleteHabitTask(id: Int)
     fun deleteHabitTask(task: HabitTask)
 }

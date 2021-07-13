@@ -5,7 +5,7 @@ import com.har.habittracker.domain.repository.IHabitTaskRepository
 
 class DeleteHabitTaskUseCase(private val repository: IHabitTaskRepository) {
 
-    suspend fun execute(id: Long) {
+    suspend fun execute(id: Int) {
         repository.deleteHabitTask(id)
     }
 
