@@ -4,8 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.har.habittracker.domain.model.HabitTask
 import com.har.habittracker.presentation.detail.TaskDetailFrontFragment
+import javax.inject.Inject
 
-class TaskDetailAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
+class TaskDetailAdapter @Inject constructor(fragment: Fragment): FragmentStateAdapter(fragment) {
 
     private val taskDetailList: MutableList<HabitTask> = mutableListOf()
 
