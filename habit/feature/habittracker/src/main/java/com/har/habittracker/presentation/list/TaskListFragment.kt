@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.har.habittracker.R
 import com.har.habittracker.databinding.FragmentTaskListBinding
 import com.har.habittracker.presentation.calendar.CalendarFragmentDirections
-import com.har.habittracker.presentation.list.component.TaskDetailAdapter
+import com.har.habittracker.presentation.list.component.TaskDetailFragmentStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,7 +25,7 @@ class TaskListFragment : Fragment() {
     private val viewModel: TaskListFragmentViewModel by viewModels()
 
     @Inject
-    lateinit var adapter: TaskDetailAdapter
+    lateinit var fragmentStateAdapter: TaskDetailFragmentStateAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -37,7 +37,7 @@ class TaskListFragment : Fragment() {
         binding.layAddNewTask.setOnClickListener {
             findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToTaskListDialog())
         }
-        binding.vpTaskList.adapter = adapter
+        binding.vpTaskList.adapter = fragmentStateAdapter
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -45,7 +45,7 @@ class TaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.habitTaskList.observe(viewLifecycleOwner) {
-            adapter.setTaskDetailList(it)
+            fragmentStateAdapter.setTaskDetailList(it)
         }
     }
 }

@@ -6,7 +6,7 @@ import com.har.habittracker.domain.model.HabitTask
 import com.har.habittracker.presentation.detail.TaskDetailFrontFragment
 import javax.inject.Inject
 
-class TaskDetailAdapter @Inject constructor(fragment: Fragment): FragmentStateAdapter(fragment) {
+class TaskDetailFragmentStateAdapter @Inject constructor(fragment: Fragment): FragmentStateAdapter(fragment) {
 
     private val taskDetailList: MutableList<HabitTask> = mutableListOf()
 
