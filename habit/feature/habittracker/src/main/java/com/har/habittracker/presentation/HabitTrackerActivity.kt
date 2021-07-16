@@ -6,7 +6,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.har.habittracker.R
 import com.har.habittracker.presentation.addition.NewTaskDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HabitTrackerActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

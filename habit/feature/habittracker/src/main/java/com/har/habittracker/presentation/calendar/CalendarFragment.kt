@@ -13,6 +13,7 @@ import com.har.habittracker.R
 import com.har.habittracker.databinding.FragmentCalendarBinding
 import com.har.habittracker.presentation.addition.NewTaskDialog
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CalendarFragment: Fragment() {
@@ -20,7 +21,7 @@ class CalendarFragment: Fragment() {
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("FragmentCalendarBinding is null")
 
-    private val viewModel: CalendarFragmentViewModel by viewModels()
+    @Inject lateinit var viewModel: CalendarFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
