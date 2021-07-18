@@ -7,6 +7,7 @@ import com.har.habittracker.domain.usecase.GetHabitTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class TaskListFragmentViewModel @Inject constructor(
         private val getHabitTaskUseCase: GetHabitTaskUseCase
 ) : ViewModel() {

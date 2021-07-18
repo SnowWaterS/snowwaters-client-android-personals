@@ -1,6 +1,7 @@
 package com.har.habittracker.presentation.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,28 +25,37 @@ class TaskListFragment : Fragment() {
 
     private val viewModel: TaskListFragmentViewModel by viewModels()
 
-    @Inject
-    lateinit var fragmentStateAdapter: TaskDetailFragmentStateAdapter
+//    @Inject lateinit var fragmentStateAdapter: TaskDetailFragmentStateAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_list, container, false)
         binding.viewModel = viewModel
-        binding.layAddNewTask.setOnClickListener {
-            findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToTaskListDialog())
-        }
-        binding.vpTaskList.adapter = fragmentStateAdapter
         binding.lifecycleOwner = this
+
+        binding.layAddNewTask.setOnClickListener {
+            findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToNewTaskDialog())
+        }
+//        binding.vpTaskList.adapter = fragmentStateAdapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.habitTaskList.observe(viewLifecycleOwner) {
-            fragmentStateAdapter.setTaskDetailList(it)
+            if (it.isNotEmpty()) {
+                binding.spinnerTaskList.visibility = View.VISIBLE
+                binding.vpTaskList.visibility = View.VISIBLE
+                binding.layNoTask.visibility = View.GONE
+            //                fragmentStateAdapter.setTaskDetailList(it)
+            } else {
+                binding.layNoTask.visibility = View.VISIBLE
+                binding.spinnerTaskList.visibility = View.GONE
+                binding.vpTaskList.visibility = View.GONE
+            }
         }
     }
 }
