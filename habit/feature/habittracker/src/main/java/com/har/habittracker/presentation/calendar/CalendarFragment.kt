@@ -21,7 +21,7 @@ class CalendarFragment: Fragment() {
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("FragmentCalendarBinding is null")
 
-    @Inject lateinit var viewModel: CalendarFragmentViewModel
+    private val viewModel: CalendarFragmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +30,7 @@ class CalendarFragment: Fragment() {
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_calendar, container, false)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         binding.layAddNewTask.setOnClickListener {
             val dialog = NewTaskDialog()

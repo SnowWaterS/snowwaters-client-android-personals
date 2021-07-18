@@ -4,12 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.har.habittracker.domain.model.HabitTask
+import com.har.habittracker.domain.usecase.GetHabitTaskUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-class CalendarFragmentViewModel @Inject constructor(): ViewModel() {
+@HiltViewModel
+class CalendarFragmentViewModel @Inject constructor(
+    private val getHabitTaskUseCase: GetHabitTaskUseCase
+): ViewModel() {
 
-    private val _taskList = MutableLiveData<List<HabitTask>>(null)
+    val habitTaskList: LiveData<List<HabitTask>>
+        get() = getHabitTaskUseCase.execute()
 
-    val taskList: LiveData<List<HabitTask>>
-        get() = _taskList
 }
