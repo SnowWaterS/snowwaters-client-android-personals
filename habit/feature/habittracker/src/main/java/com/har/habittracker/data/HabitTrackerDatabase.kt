@@ -20,13 +20,13 @@ abstract class HabitTrackerDatabase : RoomDatabase() {
         private var INSTANCE: HabitTrackerDatabase? = null
 
         @JvmStatic
-        fun getInstance(context: Context): HabitTrackerDatabase {
+        fun getInstance(appContext: Context): HabitTrackerDatabase {
             val createdInstance = INSTANCE
             if (createdInstance != null) return createdInstance
 
             synchronized(this) {
                 val createNewInstance = Room.databaseBuilder(
-                    context.applicationContext,
+                    appContext,
                     HabitTrackerDatabase::class.java,
                     "HabitTracker.db"
                 ).fallbackToDestructiveMigration().build()

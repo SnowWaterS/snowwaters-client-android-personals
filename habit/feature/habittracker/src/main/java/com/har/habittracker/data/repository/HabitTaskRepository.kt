@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import com.har.habittracker.data.dao.HabitTaskDao
 import com.har.habittracker.domain.model.HabitTask
 import com.har.habittracker.domain.repository.IHabitTaskRepository
+import javax.inject.Inject
 
-class TaskRepository(
+class HabitTaskRepository @Inject constructor(
     private val dao: HabitTaskDao
 ): IHabitTaskRepository {
 
