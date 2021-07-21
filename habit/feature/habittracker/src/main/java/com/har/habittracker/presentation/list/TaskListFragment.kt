@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class TaskListFragment : Fragment() {
+class TaskListFragment @Inject constructor() : Fragment() {
 
     private var _binding: FragmentTaskListBinding? = null
     private val binding
@@ -25,12 +25,13 @@ class TaskListFragment : Fragment() {
 
     private val viewModel: TaskListFragmentViewModel by viewModels()
 
-//    @Inject lateinit var fragmentStateAdapter: TaskDetailFragmentStateAdapter
+    @Inject
+    lateinit var fragmentStateAdapter: TaskDetailFragmentStateAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_list, container, false)
         binding.viewModel = viewModel
@@ -39,7 +40,7 @@ class TaskListFragment : Fragment() {
         binding.layAddNewTask.setOnClickListener {
             findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToNewTaskDialog())
         }
-//        binding.vpTaskList.adapter = fragmentStateAdapter
+        binding.vpTaskList.adapter = fragmentStateAdapter
         return binding.root
     }
 
@@ -50,7 +51,7 @@ class TaskListFragment : Fragment() {
                 binding.spinnerTaskList.visibility = View.VISIBLE
                 binding.vpTaskList.visibility = View.VISIBLE
                 binding.layNoTask.visibility = View.GONE
-            //                fragmentStateAdapter.setTaskDetailList(it)
+                fragmentStateAdapter.setTaskDetailList(it)
             } else {
                 binding.layNoTask.visibility = View.VISIBLE
                 binding.spinnerTaskList.visibility = View.GONE

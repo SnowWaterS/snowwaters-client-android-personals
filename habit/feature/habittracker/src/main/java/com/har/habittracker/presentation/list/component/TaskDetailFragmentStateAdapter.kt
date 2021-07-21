@@ -11,11 +11,11 @@ class TaskDetailFragmentStateAdapter @Inject constructor(fragment: Fragment): Fr
     private val taskDetailList: MutableList<HabitTask> = mutableListOf()
 
     override fun getItemCount(): Int {
-        return Integer.MAX_VALUE
+        return taskDetailList.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return TaskDetailFrontFragment()
+        return TaskDetailFrontFragment.getInstance(taskDetailList[position].id)
     }
 
     fun setTaskDetailList(newTaskDetailList: List<HabitTask>) {

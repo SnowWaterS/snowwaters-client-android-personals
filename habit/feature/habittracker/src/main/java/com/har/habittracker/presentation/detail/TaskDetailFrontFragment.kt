@@ -13,8 +13,6 @@ import com.har.habittracker.databinding.FragmentTaskDetailFrontBinding
 
 class TaskDetailFrontFragment: Fragment() {
 
-    private val args: TaskDetailFrontFragmentArgs by navArgs()
-
     private var _binding: FragmentTaskDetailFrontBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("FragmentTaskDetailFrontBinding is null")
 
@@ -26,8 +24,29 @@ class TaskDetailFrontFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_detail_front, container, false)
-        viewModel.fetch(args.taskId)
+
+        var taskId = 0
+        var args = arguments
+        args?.let {
+            taskId = it.getInt(KEY_TASK_ID)
+        }
+        viewModel.fetch(taskId)
         return binding.root
+    }
+
+    companion object {
+
+        const val KEY_TASK_ID = "key_task_id"
+
+        @JvmStatic
+        fun getInstance(taskId: Int): TaskDetailFrontFragment {
+            val fragment = TaskDetailFrontFragment()
+            val args = Bundle()
+            args.putInt(KEY_TASK_ID, taskId)
+            fragment.arguments = args
+            return fragment
+        }
+
     }
 
 }
