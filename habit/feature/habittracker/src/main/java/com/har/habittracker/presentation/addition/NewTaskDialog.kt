@@ -9,7 +9,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.har.habittracker.R
 import com.har.habittracker.databinding.DialogNewTaskBinding
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewTaskDialog: DialogFragment() {
 
     private var _binding: DialogNewTaskBinding? = null
@@ -25,6 +28,7 @@ class NewTaskDialog: DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.dialog_new_task, container, false)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         binding.layAddNewTask.setOnClickListener {
             dismissAllowingStateLoss()
