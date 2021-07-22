@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = HabitTask.TABLE_NAME,
         indices = [Index(value = ["id"], unique = true)])
@@ -17,4 +18,7 @@ data class HabitTask(
     companion object {
         const val TABLE_NAME = "habit_tasks"
     }
+
+    constructor(title: String, description: String, alarmAt: Long):
+            this (0, title, description, Calendar.getInstance().timeInMillis, alarmAt)
 }
