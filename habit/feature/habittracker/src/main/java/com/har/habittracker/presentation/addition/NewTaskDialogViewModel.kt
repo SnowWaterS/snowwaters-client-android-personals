@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.har.habittracker.domain.model.HabitTask
 import com.har.habittracker.domain.usecase.AddHabitTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -19,23 +18,23 @@ class NewTaskDialogViewModel @Inject constructor(
         private val addHabitTaskUseCase: AddHabitTaskUseCase
 ) : ViewModel() {
 
-    private val _title = MutableLiveData("")
-    private val _description = MutableLiveData("")
-    private val _date = MutableLiveData(Calendar.getInstance().timeInMillis)
 
-    val title: LiveData<String>
-        get() = _title
 
-    val description: LiveData<String>
-        get() = _description
+    var title = MutableLiveData("")
+    var description = MutableLiveData("")
 
-    val date: LiveData<Long>
-        get() = _date
+    var hourOfDay = MutableLiveData(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+    var minute = MutableLiveData(Calendar.getInstance().get(Calendar.MINUTE))
+
+    fun onTimeChanged(view: View, hourOfDay: Int, minute: Int) {
+        this.hourOfDay.postValue(hourOfDay)
+        this.minute.postValue(minute)
+    }
 
     fun onAddButtonClicked(view: View) {
         val titleValue = title.value ?: ""
         val descriptionValue = description.value ?: ""
-        val dateLongValue = date.value ?: 0L
+        val dateLongValue = Calendar.getInstance().timeInMillis
 
         if (titleValue.isNotEmpty()) {
             viewModelScope.launch (Dispatchers.IO) {

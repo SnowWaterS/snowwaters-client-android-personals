@@ -42,6 +42,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:maxLines="2"
+                    android:text="@={viewModel.title}"
                     android:hint="Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,6 +53,7 @@
                     android:layout_height="200dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
+                    android:text="@={viewModel.description}"
                     android:hint="Description"
                     app:layout_constraintTop_toBottomOf="@id/ti_task_title" />
 
@@ -69,6 +71,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:timePickerMode="spinner"
+                        android:hour="@={viewModel.hourOfDay}"
+                        android:minute="@={viewModel.minute}"
+                        android:onTimeChanged="@{(view, hour, minute) -> viewModel.onTimeChanged(view, hour, minute)}"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -81,6 +86,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:gravity="center"
+                    android:onSingleClick="@{view -> viewModel.onAddButtonClicked(view)}"
                     android:layout_marginBottom="30dp"
                     android:text="Add New Task"
                     app:layout_constraintBottom_toBottomOf="parent" />
