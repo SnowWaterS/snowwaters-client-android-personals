@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.har.habittracker.R
 import com.har.habittracker.presentation.addition.NewTaskDialog
+import com.har.habittracker.util.AlarmHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,5 +35,15 @@ class HabitTrackerActivity: AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        testNotification()
+    }
+
+    private fun testNotification() {
+        val alarmHelper = AlarmHelper()
+        alarmHelper.createAlarm(applicationContext)
     }
 }
