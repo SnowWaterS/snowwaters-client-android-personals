@@ -11,7 +11,9 @@ import androidx.core.app.NotificationCompat
 import com.har.habittracker.R
 import com.har.habittracker.presentation.HabitTrackerActivity
 
-class AlarmHelper {
+object AlarmHelper {
+
+    var alarmId = 0
 
     fun createAlarm(context: Context) {
         val intent = Intent(context, HabitTrackerActivity::class.java)
@@ -43,6 +45,8 @@ class AlarmHelper {
 
             notificationManager.createNotificationChannel(notificationChannel)
         }
-        notificationManager.notify(0, builder.build())
+        notificationManager.notify(alarmId, builder.build())
+
+        alarmId++
     }
 }

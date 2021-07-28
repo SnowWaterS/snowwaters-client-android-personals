@@ -7,7 +7,6 @@ import com.har.habittracker.util.AlarmHelper
 
 class AlarmBroadcastReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
-        val alarmHelper = AlarmHelper()
-        alarmHelper.createAlarm(context)
+        AlarmHelper.createAlarm(context)
     }
 }

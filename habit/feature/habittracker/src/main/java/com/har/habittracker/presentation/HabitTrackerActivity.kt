@@ -43,7 +43,6 @@ class HabitTrackerActivity: AppCompatActivity() {
     }
 
     private fun testNotification() {
-        val alarmHelper = AlarmHelper()
-        alarmHelper.createAlarm(applicationContext)
+        AlarmHelper.createAlarm(applicationContext)
     }
 }
